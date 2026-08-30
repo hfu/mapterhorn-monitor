@@ -4,5 +4,7 @@
   { "id": "D73", "time": "2026-08-30T19:58:00+09:00", "severity": "success", "summary": "publish_cycle_12完走、stars本番反映完了" },
   { "id": "D74", "time": "2026-08-30T22:50:00+09:00", "severity": "warning", "summary": "pmtiles-store全体の50%の位置でstale child_z重複ファイルを発見、212GB削除(市松模様の有力仮説)" },
   { "id": "D75", "time": "2026-08-31T00:00:00+09:00", "severity": "error", "summary": "D74の削除ロジックに欠陥、downsampling層の複数child_z共存を見落とし4,396件を過剰削除。check_downsampling_done_integrity.py --fixで修復" },
-  { "id": "D76", "time": "2026-08-31T05:15:00+09:00", "severity": "error", "summary": "aggregation層とdownsampling層の座標名前空間衝突により3,344件のaggregation出力を誤削除。再aggregationで復旧中(進行中)" }
+  { "id": "D76", "time": "2026-08-31T05:15:00+09:00", "severity": "error", "summary": "aggregation層とdownsampling層の座標名前空間衝突により3,344件のaggregation出力を誤削除。再aggregationで復旧中(進行中)" },
+  { "id": "D77", "time": "2026-08-31T06:50:00+09:00", "severity": "info", "summary": "z7/z8接合境界をレビュー: get_pmtiles_folder()と整合し境界自体は妥当。ただしMapterhorn自身のデータ限界により日本近海の外洋にz6-7で最大27.5%の欠落が接合後も残ることを実測で確認" },
+  { "id": "D78", "time": "2026-08-31T06:55:00+09:00", "severity": "warning", "summary": "D74の「stale cleanupが50%で機能せず」という診断自体が誤りと判明。名前空間を正しく分離した監査スクリプトで再スキャンした結果、真のstaleファイルは0件。市松模様の根本原因は未特定に逆戻り" }
 ]

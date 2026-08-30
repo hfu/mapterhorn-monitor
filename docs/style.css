@@ -1,0 +1,286 @@
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    'Hiragino Sans',
+    'Hiragino Kaku Gothic ProN',
+    'Yu Gothic',
+    'Noto Sans JP',
+    'Inter',
+    'Segoe UI',
+    system-ui,
+    sans-serif;
+  background: #0d1117;
+  color: #dce6f1;
+  line-height: 1.7;
+}
+
+#app {
+  height: 100%;
+}
+
+.mjbmon-instrument {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 16px;
+  overflow: auto;
+  background: #0b1017;
+  font-size: 14px;
+}
+
+.mjbmon-caption {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #95a8be;
+}
+
+/* current-stage.js */
+
+.mjbmon-stage-name {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.mjbmon-stage-desc {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #95a8be;
+}
+
+.mjbmon-stage-numbers {
+  margin-top: 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.mjbmon-stage-done {
+  font-size: 32px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.mjbmon-stage-total {
+  font-size: 16px;
+  color: #95a8be;
+  font-variant-numeric: tabular-nums;
+}
+
+.mjbmon-stage-pct {
+  font-size: 16px;
+  color: #5fae8c;
+  font-variant-numeric: tabular-nums;
+}
+
+.mjbmon-progress-track {
+  margin-top: 10px;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: #1a2433;
+  overflow: hidden;
+}
+
+.mjbmon-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2f6fe0, #5fae8c);
+  transition: width 0.4s ease;
+}
+
+.mjbmon-stage-eta-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.mjbmon-stat-box {
+  background: #111a26;
+  border: 1px solid #243247;
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.mjbmon-stat-label {
+  font-size: 11px;
+  color: #95a8be;
+}
+
+.mjbmon-stat-value {
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* status-map.js */
+
+.mjbmon-map-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.mjbmon-map {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  background: #0a131f;
+}
+
+.mjbmon-map-legend {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  background: rgba(17, 26, 38, 0.85);
+  border: 1px solid #243247;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 12px;
+  z-index: 5;
+}
+
+.mjbmon-map-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+.mjbmon-map-legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.mjbmon-map-info {
+  flex-shrink: 0;
+  width: 100%;
+  height: 72px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 10px 16px;
+  border-top: 1px solid #243247;
+  background: #111a26;
+  font-size: 12px;
+}
+
+.mjbmon-map .maplibregl-popup-content {
+  background: #111a26;
+  color: #dce6f1;
+  padding: 10px 12px;
+}
+
+/* build-log.js */
+
+.mjbmon-log-list {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mjbmon-log-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #1a2433;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.mjbmon-log-list li:last-child {
+  border-bottom: 0;
+}
+
+.mjbmon-log-id {
+  flex-shrink: 0;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  width: 36px;
+}
+
+.mjbmon-log-time {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: #95a8be;
+  width: 130px;
+  font-variant-numeric: tabular-nums;
+}
+
+.mjbmon-log-summary {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.mjbmon-log-severity-info {
+  color: #7ba7e0;
+}
+
+.mjbmon-log-severity-success {
+  color: #5fae8c;
+}
+
+.mjbmon-log-severity-warning {
+  color: #e4c74a;
+}
+
+.mjbmon-log-severity-error {
+  color: #e46a4a;
+}
+
+/* resources.js */
+
+.mjbmon-resource-row {
+  margin-top: 16px;
+}
+
+.mjbmon-resource-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.mjbmon-resource-value {
+  color: #95a8be;
+  font-variant-numeric: tabular-nums;
+}
+
+.mjbmon-resource-bar-track {
+  margin-top: 6px;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: #1a2433;
+  overflow: hidden;
+}
+
+.mjbmon-resource-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.mjbmon-resource-bar-fill-ok {
+  background: #5fae8c;
+}
+
+.mjbmon-resource-bar-fill-warn {
+  background: #e4c74a;
+}
+
+.mjbmon-resource-bar-fill-danger {
+  background: #e46a4a;
+}

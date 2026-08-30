@@ -6,5 +6,9 @@ window.MJBMON_CONFIG = {
   // that branch (CORS: * confirmed by sas0 -- no backend needed either way).
   PROGRESS_URL: './data/progress.json',
   AGG_TILES_URL: './data/agg_tiles.json',
-  BUILD_LOG_URL: './data/build_log.json'
+  BUILD_LOG_URL: './data/build_log.json',
+  // Same basemap sas0 uses (stars.optgeo.org, the user's own martin+Caddy
+  // pmtiles host) -- confirmed working/CORS-open there, dark theme matches
+  // Open MCT's Espresso chrome.
+  BASEMAP_STYLE_URL: 'https://stars.optgeo.org/style/bvmap-dark'
 };
