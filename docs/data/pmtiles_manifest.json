@@ -1,0 +1,48 @@
+[
+  {
+    "key": "global-overview",
+    "name": "global-overview.pmtiles (z0-7, Mapterhorn由来)",
+    "description": "tiles.mapterhorn.com由来のz0-7を束ねたグローバル俯瞰レイヤー。D77で境界の妥当性を検証済み。",
+    "status": "local_only",
+    "location": "slate: /Volumes/Migrate-2025-04/global-overview-backup.pmtiles(バックアップ、最終mergeの直前にbundle-storeへ戻す)",
+    "min_zoom": 0,
+    "max_zoom": 7,
+    "tile_count": 13524,
+    "size_bytes": 3266525555,
+    "clustered": true,
+    "attribution": "© Mapterhorn (https://mapterhorn.com/attribution)",
+    "viewer_url": null,
+    "note": "slateローカルのみ、公開URLなし。pmtiles.ioでの直接検査には range-request 対応の静的公開が別途必要(未着手)。"
+  },
+  {
+    "key": "japan-z8plus",
+    "name": "japan-z8plus.pmtiles (z8+, 自前GSIデータ)",
+    "description": "GSI基盤地図情報DEM(7段優先度合成)から生成する自前のz8以上のピラミッド。",
+    "status": "not_yet_built",
+    "location": "aggregation_repair_3344(D74-D76復旧)完了後、bundle.py + merge_japan_bundles.pyで再生成予定",
+    "min_zoom": 8,
+    "max_zoom": 16,
+    "tile_count": null,
+    "size_bytes": null,
+    "clustered": null,
+    "attribution": "国土地理院(GSI Japan)",
+    "viewer_url": null,
+    "note": "復旧完了後に再生成されるまで存在しない。"
+  },
+  {
+    "key": "mapterhorn-japan-bridge",
+    "name": "mapterhorn-japan-bridge.pmtiles (最終統合、公開中)",
+    "description": "上記2つをpmtiles mergeで統合した最終成果物。starsでmartin配信中。",
+    "status": "published",
+    "location": "stars (martin + Caddy) 経由で配信",
+    "min_zoom": 0,
+    "max_zoom": 16,
+    "tile_count": null,
+    "size_bytes": null,
+    "clustered": null,
+    "attribution": "国土地理院 (GSI Japan). Processed with Mapterhorn (interim bridge).",
+    "tilejson_url": "https://stars.optgeo.org/mapterhorn-japan-bridge",
+    "viewer_url": "https://hfu.github.io/mapterhorn-japan-bridge/",
+    "note": "現在配信中の版はD74-D76の事故発覚前のもの。復旧・再merge・再rsync完了後に更新される。"
+  }
+]

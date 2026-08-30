@@ -284,3 +284,128 @@ body {
 .mjbmon-resource-bar-fill-danger {
   background: #e46a4a;
 }
+
+/* pmtiles-manifest.js */
+
+.mjbmon-pmtiles-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mjbmon-pmtiles-card {
+  background: #111a26;
+  border: 1px solid #243247;
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+
+.mjbmon-pmtiles-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.mjbmon-pmtiles-name {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.mjbmon-pmtiles-status {
+  flex-shrink: 0;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.mjbmon-pmtiles-status-published {
+  background: rgba(95, 174, 140, 0.2);
+  color: #5fae8c;
+}
+
+.mjbmon-pmtiles-status-local {
+  background: rgba(228, 199, 74, 0.2);
+  color: #e4c74a;
+}
+
+.mjbmon-pmtiles-status-pending {
+  background: rgba(149, 168, 190, 0.2);
+  color: #95a8be;
+}
+
+.mjbmon-pmtiles-desc {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #95a8be;
+}
+
+.mjbmon-pmtiles-meta-grid {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 8px;
+}
+
+.mjbmon-pmtiles-meta-cell {
+  background: #0b1017;
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+
+.mjbmon-pmtiles-meta-label {
+  font-size: 10px;
+  color: #95a8be;
+}
+
+.mjbmon-pmtiles-meta-value {
+  margin-top: 2px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.mjbmon-pmtiles-attr {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #95a8be;
+}
+
+.mjbmon-pmtiles-note {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #95a8be;
+  line-height: 1.5;
+}
+
+.mjbmon-pmtiles-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.mjbmon-pmtiles-link {
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background: rgba(47, 111, 224, 0.2);
+  color: #7ba7e0;
+  text-decoration: none;
+}
+
+.mjbmon-pmtiles-link:hover {
+  background: rgba(47, 111, 224, 0.35);
+}
+
+.mjbmon-pmtiles-link-secondary {
+  background: transparent;
+  border: 1px solid #243247;
+  color: #95a8be;
+}
+
+.mjbmon-pmtiles-link-disabled {
+  background: transparent;
+  color: #6b7d90;
+  cursor: default;
+}

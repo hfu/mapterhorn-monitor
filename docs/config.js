@@ -7,6 +7,7 @@ window.MJBMON_CONFIG = {
   PROGRESS_URL: './data/progress.json',
   AGG_TILES_URL: './data/agg_tiles.json',
   BUILD_LOG_URL: './data/build_log.json',
+  PMTILES_MANIFEST_URL: './data/pmtiles_manifest.json',
   // Same basemap sas0 uses (stars.optgeo.org, the user's own martin+Caddy
   // pmtiles host) -- confirmed working/CORS-open there, dark theme matches
   // Open MCT's Espresso chrome.
