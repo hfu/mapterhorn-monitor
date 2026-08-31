@@ -41,12 +41,28 @@ window.MJBMON = (function () {
       cycleTimer = null;
       updateCycleButton();
     }
+    // Exiting fullscreen when cycle mode wasn't the thing that entered it
+    // (e.g. the user pressed Esc, which also lands here via the
+    // fullscreenchange listener below) is a harmless no-op -- the
+    // Fullscreen API rejects/ignores a redundant exit request.
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    }
   }
 
   function startCycleMode() {
     const keys = rootChildKeys();
     if (keys.length === 0) {
       return;
+    }
+    // Kiosk-style cycling implies a wall display -- fullscreen removes the
+    // browser chrome so only the instrument content is visible. Requesting
+    // it here relies on the click that triggered toggleCycleMode() as the
+    // user gesture the Fullscreen API requires; the request is fire-and-
+    // forget (some browsers/embeds refuse it) so cycling still proceeds
+    // even if fullscreen itself is denied.
+    if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen().catch(() => {});
     }
     cycleIndex = 0;
     openmct.router.setPath(`/browse/${NAMESPACE}:${keys[cycleIndex]}`);
@@ -79,6 +95,15 @@ window.MJBMON = (function () {
     // tree while cycling means the user picked something themselves.
     document.addEventListener('click', (event) => {
       if (cycleTimer && event.target.closest('.c-tree, .l-shell__tree')) {
+        stopCycleMode();
+      }
+    });
+
+    // Esc (or any other exit) leaves fullscreen without going through our
+    // own stopCycleMode() -- without this, the timer would keep advancing
+    // the (now-windowed) page and the button would still say "Cycling".
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement && cycleTimer) {
         stopCycleMode();
       }
     });
