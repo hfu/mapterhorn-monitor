@@ -209,62 +209,6 @@ body {
   padding: 10px 12px;
 }
 
-/* build-log.js */
-
-.mjbmon-log-list {
-  margin: 12px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.mjbmon-log-list li {
-  padding: 10px 0;
-  border-bottom: 1px solid #1a2433;
-  display: flex;
-  gap: 10px;
-  align-items: baseline;
-}
-
-.mjbmon-log-list li:last-child {
-  border-bottom: 0;
-}
-
-.mjbmon-log-id {
-  flex-shrink: 0;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  width: 36px;
-}
-
-.mjbmon-log-time {
-  flex-shrink: 0;
-  font-size: 11px;
-  color: #95a8be;
-  width: 130px;
-  font-variant-numeric: tabular-nums;
-}
-
-.mjbmon-log-summary {
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.mjbmon-log-severity-info {
-  color: #7ba7e0;
-}
-
-.mjbmon-log-severity-success {
-  color: #5fae8c;
-}
-
-.mjbmon-log-severity-warning {
-  color: #e4c74a;
-}
-
-.mjbmon-log-severity-error {
-  color: #e46a4a;
-}
-
 /* resources.js */
 
 .mjbmon-resource-row {

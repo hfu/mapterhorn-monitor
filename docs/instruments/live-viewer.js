@@ -32,7 +32,7 @@
     name: 'Live Viewer',
     parentKey: 'root',
     autoRefresh: false,
-    order: 6,
+    order: 5,
     render
   });
 })();

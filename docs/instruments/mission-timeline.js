@@ -204,7 +204,7 @@
     key: 'mission-timeline',
     name: 'Mission Timeline (ETA)',
     parentKey: 'root',
-    order: 5,
+    order: 4,
     render
   });
 })();
