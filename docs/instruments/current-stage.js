@@ -1,21 +1,6 @@
 (function () {
   const config = window.MJBMON_CONFIG || {};
 
-  function formatDuration(ms) {
-    if (!Number.isFinite(ms) || ms < 0) {
-      return 'unknown';
-    }
-    const minutes = ms / 60000;
-    if (minutes < 90) {
-      return `~${Math.round(minutes)} min`;
-    }
-    const hours = minutes / 60;
-    if (hours < 48) {
-      return `~${hours.toFixed(1)} hr`;
-    }
-    return `~${(hours / 24).toFixed(1)} days`;
-  }
-
   // Linear-rate ETA from the two timestamps embedded in progress.json --
   // (done - baseline_done) tiles repaired since started_at, projected
   // forward against the remaining total_to_repair. This is a rough
@@ -98,10 +83,24 @@
     const grid = document.createElement('div');
     grid.className = 'mjbmon-stage-eta-grid';
 
+    // Estimated completion is shown as an absolute timestamp, not a
+    // relative "~N hours" duration -- a relative figure is only correct
+    // at the instant this snapshot was generated, and goes silently stale
+    // (and misleading) the moment someone looks at it later. An absolute
+    // clock time stays correct-as-of-its-own-basis regardless of when it's
+    // viewed (Hidenori feedback, ahead of sharing this dashboard with
+    // outside collaborators; mapterhorn-japan-bridge DECISIONS.md D89).
+    const etaAbsolute =
+      eta && Number.isFinite(eta.remainingMs)
+        ? new Date(new Date(progress.generated_at).getTime() + eta.remainingMs).toLocaleString('en-US', {
+            hour12: false
+          })
+        : null;
+
     const boxes = [
       ['Cumulative .done count', `${done.toLocaleString('en-US')}`],
       ['Rate', eta ? `${eta.ratePerMinute.toFixed(2)} items/min` : 'n/a'],
-      ['ETA remaining', eta ? formatDuration(eta.remainingMs) : 'n/a'],
+      ['Estimated completion', etaAbsolute || 'n/a'],
       ['Started at', stage.started_at ? new Date(stage.started_at).toLocaleString('en-US', { hour12: false }) : '-']
     ];
     boxes.forEach(([label, value]) => {
@@ -114,9 +113,7 @@
 
     const caption = document.createElement('p');
     caption.className = 'mjbmon-caption';
-    caption.textContent = `Snapshot taken at: ${new Date(progress.generated_at).toLocaleString('en-US', { hour12: false })}${
-      progress.note ? ' — ' + progress.note : ''
-    }`;
+    caption.textContent = `Snapshot taken at: ${new Date(progress.generated_at).toLocaleString('en-US', { hour12: false })}`;
     root.appendChild(caption);
 
     container.appendChild(root);
@@ -126,7 +123,7 @@
     key: 'current-stage',
     name: 'Current Stage',
     parentKey: 'root',
-    order: 0,
+    order: 1,
     render
   });
 })();

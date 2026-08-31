@@ -1,7 +1,6 @@
 {
   "generated_at": "2026-09-01T02:43:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
-  "note": "Manually updated snapshot. Planned evolution: a slate-side script commits to a dedicated branch served via raw.githubusercontent.com (per sas0's advice).",
   "current_stage": {
     "name": "aggregation_repair_3344",
     "description": "D74-D76 repair: regenerating 3,344 aggregation outputs that were deleted by mistake",

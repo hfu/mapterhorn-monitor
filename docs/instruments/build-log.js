@@ -53,7 +53,7 @@
     key: 'build-log',
     name: 'Change Log',
     parentKey: 'root',
-    order: 2,
+    order: 3,
     render
   });
 })();

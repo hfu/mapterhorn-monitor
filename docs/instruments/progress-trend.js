@@ -85,12 +85,6 @@
       return;
     }
 
-    const caption = document.createElement('p');
-    caption.className = 'mjbmon-caption';
-    caption.textContent =
-      'Cumulative aggregation_repair_3344 items repaired over time, reconstructed from the actual mtimes of each item\'s output .pmtiles file on slate -- real ground truth, not a transcript of tick reports. Appended roughly every 15 minutes.';
-    container.appendChild(caption);
-
     const wrap = document.createElement('div');
     wrap.innerHTML = renderSvg(points);
     container.appendChild(wrap);
@@ -106,7 +100,7 @@
     key: 'progress-trend',
     name: 'Progress Trend',
     parentKey: 'root',
-    order: 7,
+    order: 0,
     render
   });
 })();

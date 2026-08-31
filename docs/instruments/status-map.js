@@ -146,7 +146,7 @@
     name: 'Status Map',
     parentKey: 'root',
     autoRefresh: false,
-    order: 1,
+    order: 2,
     render
   });
 })();

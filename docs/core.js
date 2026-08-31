@@ -11,6 +11,79 @@ window.MJBMON = (function () {
   const childrenByKey = new Map();
   let autoOrder = 0;
 
+  // Cycle mode: kiosk-style auto-advance through root's instruments, in
+  // display order, for unattended viewing (e.g. a wall display). A manual
+  // click in the browse tree while cycling is treated as the user taking
+  // over, so it stops rather than yanking them back a few seconds later.
+  const CYCLE_INTERVAL_MS = 20 * 1000;
+  let cycleTimer = null;
+  let cycleIndex = 0;
+  let cycleButtonEl = null;
+
+  function rootChildKeys() {
+    return (childrenByKey.get('root') || [])
+      .slice()
+      .sort((a, b) => a.order - b.order)
+      .map((child) => child.identifier.key);
+  }
+
+  function updateCycleButton() {
+    if (!cycleButtonEl) {
+      return;
+    }
+    cycleButtonEl.textContent = cycleTimer ? '⏸ Cycling' : '▶ Cycle';
+    cycleButtonEl.classList.toggle('mjbmon-cycle-active', !!cycleTimer);
+  }
+
+  function stopCycleMode() {
+    if (cycleTimer) {
+      clearInterval(cycleTimer);
+      cycleTimer = null;
+      updateCycleButton();
+    }
+  }
+
+  function startCycleMode() {
+    const keys = rootChildKeys();
+    if (keys.length === 0) {
+      return;
+    }
+    cycleIndex = 0;
+    openmct.router.setPath(`/browse/${NAMESPACE}:${keys[cycleIndex]}`);
+    cycleTimer = setInterval(() => {
+      cycleIndex = (cycleIndex + 1) % keys.length;
+      openmct.router.setPath(`/browse/${NAMESPACE}:${keys[cycleIndex]}`);
+    }, CYCLE_INTERVAL_MS);
+    updateCycleButton();
+  }
+
+  function toggleCycleMode() {
+    if (cycleTimer) {
+      stopCycleMode();
+    } else {
+      startCycleMode();
+    }
+  }
+
+  function installCycleModeControl() {
+    const button = document.createElement('button');
+    button.id = 'mjbmon-cycle-toggle';
+    button.type = 'button';
+    button.textContent = '▶ Cycle';
+    button.title = `Auto-advance through every instrument every ${CYCLE_INTERVAL_MS / 1000}s`;
+    button.addEventListener('click', toggleCycleMode);
+    document.body.appendChild(button);
+    cycleButtonEl = button;
+
+    // Best-effort takeover detection: any click inside Open MCT's browse
+    // tree while cycling means the user picked something themselves.
+    document.addEventListener('click', (event) => {
+      if (cycleTimer && event.target.closest('.c-tree, .l-shell__tree')) {
+        stopCycleMode();
+      }
+    });
+  }
+
   function ensureChildBucket(key) {
     if (!childrenByKey.has(key)) {
       childrenByKey.set(key, []);
@@ -154,10 +227,20 @@ window.MJBMON = (function () {
     registerFolder,
     registerInstrument,
     start() {
-      openmct.on('start', () => {
-        openmct.router.setPath(`/browse/${NAMESPACE}:root`);
-      });
+      // openmct.on('start', ...) never actually fires in this rc1 build --
+      // the listener registers (shows up in openmct's internal event
+      // registry) but is never emitted, discovered while debugging why
+      // installCycleModeControl() never ran (mapterhorn-japan-bridge
+      // DECISIONS.md D88). Open MCT happens to default-navigate to the
+      // registered root on its own, which is why the app looked fine
+      // despite the explicit setPath below it also silently never running.
+      // Calling both directly after start() -- document.body always exists
+      // by the time an in-<body> <script> executes, so no readiness wait
+      // is needed for the DOM append; setPath is harmless/redundant with
+      // Open MCT's own default but kept for explicitness.
       openmct.start('#app');
+      openmct.router.setPath(`/browse/${NAMESPACE}:root`);
+      installCycleModeControl();
     }
   };
 })();

@@ -87,7 +87,7 @@
     key: 'resources',
     name: 'Resources',
     parentKey: 'root',
-    order: 3,
+    order: 4,
     render
   });
 })();
