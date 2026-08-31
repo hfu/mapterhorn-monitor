@@ -1,25 +1,57 @@
 {
-  "generated_at": "2026-08-31T13:10:00+09:00",
+  "generated_at": "2026-08-31T16:11:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "note": "手動スナップショット。将来的にはslate側のスクリプトがraw.githubusercontent.com経由で配信する専用ブランチへ定期コミットする想定(sas0の助言)。",
   "current_stage": {
     "name": "aggregation_repair_3344",
     "description": "D74-D76復旧: 誤って削除された3,344件のaggregation出力を再生成中",
-    "done": 3249,
+    "done": 3339,
     "baseline_done": 3029,
     "total_to_repair": 3344,
     "started_at": "2026-08-31T05:29:00+09:00"
   },
   "resources": {
     "disk": [
-      { "volume": "/Volumes/Migrate-2025-04", "avail_gb": 965, "total_gb": 1800 },
-      { "volume": "/Volumes/pmtiles-store", "avail_gb": 1700, "total_gb": 1800 }
+      {
+        "volume": "/Volumes/Migrate-2025-04",
+        "avail_gb": 965,
+        "total_gb": 1800
+      },
+      {
+        "volume": "/Volumes/pmtiles-store",
+        "avail_gb": 1700,
+        "total_gb": 1800
+      }
     ],
     "memory_pressure_level": 1,
-    "load_average": [5.53, 5.39, 5.34]
+    "load_average": [
+      5.66,
+      5.81,
+      5.73
+    ]
   },
-  "aggregation": { "done": 3249, "total": 6373, "note": "D76damage時点では6373/6373は誤り(復旧前の総数)。ここは常にaggregation_repair_3344の.doneカウント(3029ベースライン含む)を反映する。" },
-  "downsampling": { "done": 8020, "ready_not_run": 0, "not_ready": 203, "total": 8223 },
-  "global_overview": { "tiles": 13524, "max_missing_at_z7": 8321, "verified": true },
-  "pipeline_zoom_split": { "own_min_zoom": 8, "own_max_zoom": 16, "mapterhorn_zoom_range": [0, 7] }
+  "aggregation": {
+    "done": 3339,
+    "total": 6373,
+    "note": "D76damage時点では6373/6373は誤り(復旧前の総数)。ここは常にaggregation_repair_3344の.doneカウント(3029ベースライン含む)を反映する。"
+  },
+  "downsampling": {
+    "done": 8020,
+    "ready_not_run": 0,
+    "not_ready": 203,
+    "total": 8223
+  },
+  "global_overview": {
+    "tiles": 13524,
+    "max_missing_at_z7": 8321,
+    "verified": true
+  },
+  "pipeline_zoom_split": {
+    "own_min_zoom": 8,
+    "own_max_zoom": 16,
+    "mapterhorn_zoom_range": [
+      0,
+      7
+    ]
+  }
 }
