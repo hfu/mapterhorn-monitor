@@ -58,6 +58,23 @@ window.MJBMON = (function () {
     }
   }
 
+  // Shared by the auto-advance timer and the arrow-key handler below, so
+  // a manual step and a timer tick can't both be maintaining their own
+  // idea of "current index." resetTimer defaults true: a manual step
+  // restarts the CYCLE_INTERVAL_MS clock from that point, rather than
+  // auto-advancing again a moment later on whatever time was already left
+  // on the previous tick.
+  function goToCycleIndex(keys, newIndex, resetTimer) {
+    cycleIndex = ((newIndex % keys.length) + keys.length) % keys.length;
+    openmct.router.setPath(`/browse/${NAMESPACE}:${keys[cycleIndex]}`);
+    if (resetTimer !== false && cycleTimer) {
+      clearInterval(cycleTimer);
+      cycleTimer = setInterval(() => {
+        goToCycleIndex(keys, cycleIndex + 1, false);
+      }, CYCLE_INTERVAL_MS);
+    }
+  }
+
   function startCycleMode() {
     const keys = rootChildKeys();
     if (keys.length === 0) {
@@ -76,8 +93,7 @@ window.MJBMON = (function () {
     cycleIndex = 0;
     openmct.router.setPath(`/browse/${NAMESPACE}:${keys[cycleIndex]}`);
     cycleTimer = setInterval(() => {
-      cycleIndex = (cycleIndex + 1) % keys.length;
-      openmct.router.setPath(`/browse/${NAMESPACE}:${keys[cycleIndex]}`);
+      goToCycleIndex(keys, cycleIndex + 1, false);
     }, CYCLE_INTERVAL_MS);
     updateCycleButton();
   }
@@ -114,6 +130,31 @@ window.MJBMON = (function () {
     document.addEventListener('fullscreenchange', () => {
       if (!document.fullscreenElement && cycleTimer) {
         stopCycleMode();
+      }
+    });
+
+    // Left/Right steps manually through the cycle while it's running --
+    // only while cycling, so arrow keys behave normally the rest of the
+    // time (e.g. don't fight text selection or a focused input). No
+    // preventDefault needed outside cycling: this handler is a no-op then.
+    document.addEventListener('keydown', (event) => {
+      if (!cycleTimer) {
+        return;
+      }
+      // Don't steal the arrow keys from a focused input/textarea/select/
+      // contenteditable inside the current instrument (e.g. a filter box)
+      // -- sas0's suggestion, generic keyboard-shortcut hygiene rather
+      // than anything specific to our own instruments today.
+      const target = event.target;
+      const tag = target && target.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (target && target.isContentEditable)) {
+        return;
+      }
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        event.preventDefault();
+        const keys = rootChildKeys();
+        const delta = event.key === 'ArrowRight' ? 1 : -1;
+        goToCycleIndex(keys, cycleIndex + delta, true);
       }
     });
   }
