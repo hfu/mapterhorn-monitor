@@ -177,8 +177,22 @@
     const caption = document.createElement('p');
     caption.className = 'mjbmon-caption';
     caption.textContent =
-      'Solid = actual/in-progress (dark) / projected remainder (light) — dashed outline = pure estimate — solid blue outline = estimate anchored to a historical measurement (rsync). Covers every step from now through Generation 1\'s final rebuild after the D74-D76 repair.';
+      'Every step from now through Generation 1\'s final rebuild after the D74-D76 repair.';
     container.appendChild(caption);
+
+    // A prose legend crammed 4 bar styles into one sentence and read as
+    // noise (Hidenori feedback, mapterhorn-japan-bridge DECISIONS.md D86)
+    // -- swapped for swatches that visually match the actual bar styles
+    // below, same pattern as status-map.js's legend.
+    const legend = document.createElement('div');
+    legend.className = 'mjbmon-timeline-legend';
+    legend.innerHTML = `
+      <div class="mjbmon-timeline-legend-row"><span class="mjbmon-timeline-legend-swatch" style="background:#5fae8c"></span>In progress now</div>
+      <div class="mjbmon-timeline-legend-row"><span class="mjbmon-timeline-legend-swatch" style="background:#5fae8c;opacity:0.35"></span>Projected remainder of current step</div>
+      <div class="mjbmon-timeline-legend-row"><span class="mjbmon-timeline-legend-swatch" style="background:#2f6fe0;opacity:0.32;border:1px dashed #2f6fe0"></span>Future step, rough estimate</div>
+      <div class="mjbmon-timeline-legend-row"><span class="mjbmon-timeline-legend-swatch" style="background:#2f6fe0;opacity:0.55;border:1px solid #2f6fe0"></span>Future step, based on a past measurement</div>
+    `;
+    container.appendChild(legend);
 
     const { activities, nowMs } = buildActivities(progress);
     const wrap = document.createElement('div');

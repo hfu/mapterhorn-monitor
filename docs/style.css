@@ -168,6 +168,29 @@ body {
   flex-shrink: 0;
 }
 
+.mjbmon-timeline-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  margin: 10px 0 4px;
+  font-size: 12px;
+  color: #95a8be;
+}
+
+.mjbmon-timeline-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.mjbmon-timeline-legend-swatch {
+  width: 16px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
 .mjbmon-map-info {
   flex-shrink: 0;
   width: 100%;
