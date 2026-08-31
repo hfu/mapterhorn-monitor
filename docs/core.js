@@ -35,12 +35,20 @@ window.MJBMON = (function () {
     cycleButtonEl.classList.toggle('mjbmon-cycle-active', !!cycleTimer);
   }
 
+  // Browser Fullscreen API only removes the browser's OWN chrome (tabs,
+  // address bar) -- Open MCT's own header/tree/inspector panel stay put
+  // regardless. Confirmed against sas0's own DOM inspection (same Espresso
+  // theme, same Open MCT version): these class names hide that chrome.
+  // Open MCT has no built-in kiosk/fullscreen view of its own.
+  const CHROME_HIDDEN_CLASS = 'mjbmon-cycle-chrome-hidden';
+
   function stopCycleMode() {
     if (cycleTimer) {
       clearInterval(cycleTimer);
       cycleTimer = null;
       updateCycleButton();
     }
+    document.body.classList.remove(CHROME_HIDDEN_CLASS);
     // Exiting fullscreen when cycle mode wasn't the thing that entered it
     // (e.g. the user pressed Esc, which also lands here via the
     // fullscreenchange listener below) is a harmless no-op -- the
@@ -64,6 +72,7 @@ window.MJBMON = (function () {
     if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
       document.documentElement.requestFullscreen().catch(() => {});
     }
+    document.body.classList.add(CHROME_HIDDEN_CLASS);
     cycleIndex = 0;
     openmct.router.setPath(`/browse/${NAMESPACE}:${keys[cycleIndex]}`);
     cycleTimer = setInterval(() => {

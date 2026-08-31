@@ -331,3 +331,15 @@ body {
   color: #5fae8c;
   border-color: #5fae8c;
 }
+
+/* Hides Open MCT's own chrome (header/tree/inspector) while cycling --
+   the browser Fullscreen API only removes the browser's own UI, not
+   Open MCT's. Class names identified via DOM inspection against the
+   Espresso theme (cross-checked with sas0's own findings, same Open MCT
+   version) -- not documented anywhere official. */
+body.mjbmon-cycle-chrome-hidden .l-shell__head,
+body.mjbmon-cycle-chrome-hidden .l-shell__pane-tree,
+body.mjbmon-cycle-chrome-hidden .l-shell__pane-inspector,
+body.mjbmon-cycle-chrome-hidden .l-browse-bar {
+  display: none !important;
+}
