@@ -4,19 +4,36 @@
   const DONE_COLOR = '#5fae8c';
   const PENDING_COLOR = '#e46a4a';
 
+  // Real tile-coverage rectangles, not point markers -- aggregation items
+  // sit at whatever native zoom their source density calls for (mostly
+  // z8-z12, per PIPELINE_DESIGN.md), so rectangles of very different sizes
+  // stack on top of each other once zoomed out. Low fill-opacity keeps
+  // overlapping regions legible (denser overlap reads as a deeper color)
+  // instead of the small tiles just disappearing under the large ones.
   function toGeoJson(rows) {
     return {
       type: 'FeatureCollection',
-      features: rows.map(([lon, lat, z, done]) => ({
+      features: rows.map(([w, s, e, n, z, done]) => ({
         type: 'Feature',
-        geometry: { type: 'Point', coordinates: [lon, lat] },
+        geometry: {
+          type: 'Polygon',
+          coordinates: [
+            [
+              [w, s],
+              [e, s],
+              [e, n],
+              [w, n],
+              [w, s]
+            ]
+          ]
+        },
         properties: { z, done }
       }))
     };
   }
 
   const INFO_PLACEHOLDER_HTML =
-    '<div class="mjbmon-map-legend-row" style="margin:0;color:#95a8be;">Hover over a point on the map for details.</div>';
+    '<div class="mjbmon-map-legend-row" style="margin:0;color:#95a8be;">Hover over a tile on the map for details.</div>';
 
   function renderInfoPanel(panel, feature) {
     if (!feature) {
@@ -24,9 +41,8 @@
       return;
     }
     const { z, done } = feature.properties;
-    const [lon, lat] = feature.geometry.coordinates;
     const statusText = done ? 'Rebuilt' : 'Pending rebuild (D76 repair target)';
-    panel.innerHTML = `<strong>z=${z}</strong> (${lon.toFixed(3)}, ${lat.toFixed(3)}) — ${statusText}`;
+    panel.innerHTML = `<strong>z=${z}</strong> — ${statusText}`;
   }
 
   async function render(container) {
@@ -72,23 +88,32 @@
       style = await fetch(config.BASEMAP_STYLE_URL).then((response) => response.json());
     } catch (error) {
       // Basemap is nice-to-have -- fall back to a bare style so the
-      // point layer (the actual information) still renders.
+      // coverage layer (the actual information) still renders.
       style = { version: 8, sources: {}, layers: [] };
     }
 
     style.sources.mjbmon_agg_tiles = { type: 'geojson', data: toGeoJson(rows) };
-    style.layers.push({
-      id: 'mjbmon-agg-tile-point',
-      type: 'circle',
-      source: 'mjbmon_agg_tiles',
-      paint: {
-        'circle-radius': 4,
-        'circle-color': ['case', ['==', ['get', 'done'], 1], DONE_COLOR, PENDING_COLOR],
-        'circle-opacity': 0.75,
-        'circle-stroke-width': 0.5,
-        'circle-stroke-color': '#0d1117'
+    style.layers.push(
+      {
+        id: 'mjbmon-agg-tile-fill',
+        type: 'fill',
+        source: 'mjbmon_agg_tiles',
+        paint: {
+          'fill-color': ['case', ['==', ['get', 'done'], 1], DONE_COLOR, PENDING_COLOR],
+          'fill-opacity': 0.16
+        }
+      },
+      {
+        id: 'mjbmon-agg-tile-outline',
+        type: 'line',
+        source: 'mjbmon_agg_tiles',
+        paint: {
+          'line-color': ['case', ['==', ['get', 'done'], 1], DONE_COLOR, PENDING_COLOR],
+          'line-opacity': 0.35,
+          'line-width': 0.5
+        }
       }
-    });
+    );
 
     const map = new maplibregl.Map({
       container: mapDiv,
@@ -99,14 +124,14 @@
     map.addControl(new maplibregl.NavigationControl(), 'top-right');
     map.on('error', (event) => console.error('[mjbmon] maplibre error', event && event.error));
 
-    map.on('mouseenter', 'mjbmon-agg-tile-point', () => {
+    map.on('mouseenter', 'mjbmon-agg-tile-fill', () => {
       map.getCanvas().style.cursor = 'pointer';
     });
-    map.on('mouseleave', 'mjbmon-agg-tile-point', () => {
+    map.on('mouseleave', 'mjbmon-agg-tile-fill', () => {
       map.getCanvas().style.cursor = '';
       renderInfoPanel(infoPanel, null);
     });
-    map.on('mousemove', 'mjbmon-agg-tile-point', (event) => {
+    map.on('mousemove', 'mjbmon-agg-tile-fill', (event) => {
       const feature = event.features && event.features[0];
       renderInfoPanel(infoPanel, feature || null);
     });
