@@ -34,11 +34,16 @@
 
     const wrap = document.createElement('div');
     wrap.className = 'mjbmon-map-wrap';
-    wrap.style.position = 'relative';
     container.appendChild(wrap);
 
     const mapDiv = document.createElement('div');
     mapDiv.className = 'mjbmon-map';
+    // The legend is positioned absolute+bottom -- it must anchor to the map
+    // element alone, not to `wrap` (which also contains the 72px-tall info
+    // panel stacked below the map). Anchoring to `wrap` put "bottom: 24px"
+    // 24px above the bottom of the *whole* wrap, i.e. inside the info
+    // panel's own vertical span, so the two visibly overlapped.
+    mapDiv.style.position = 'relative';
     wrap.appendChild(mapDiv);
 
     const legend = document.createElement('div');
@@ -47,7 +52,7 @@
       <div class="mjbmon-map-legend-row"><span class="mjbmon-map-legend-swatch" style="background:${DONE_COLOR}"></span>Rebuilt</div>
       <div class="mjbmon-map-legend-row"><span class="mjbmon-map-legend-swatch" style="background:${PENDING_COLOR}"></span>Pending rebuild (aggregation_repair_3344 target)</div>
     `;
-    wrap.appendChild(legend);
+    mapDiv.appendChild(legend);
 
     const infoPanel = document.createElement('div');
     infoPanel.className = 'mjbmon-map-info';
