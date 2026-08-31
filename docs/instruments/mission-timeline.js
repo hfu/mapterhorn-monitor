@@ -87,14 +87,19 @@
     const domainEnd = Math.max(...activities.map((a) => a.end));
     const domainSpan = domainEnd - domainStart || 1;
 
+    // Row/font sizing (revised 2026-09-01, mapterhorn-japan-bridge
+    // DECISIONS.md D85): the original 10-11px SVG-unit text read as tiny
+    // once rendered at the dashboard's actual panel width -- bumped
+    // throughout, with rowHeight/labelHeight/topPad enlarged to match so
+    // bars and axis ticks don't crowd the now-larger labels.
     const width = 900;
-    const rowHeight = 34;
-    const topPad = 30;
-    const leftPad = 8;
-    const rightPad = 8;
-    const labelHeight = 16;
+    const rowHeight = 46;
+    const topPad = 40;
+    const leftPad = 10;
+    const rightPad = 10;
+    const labelHeight = 22;
     const plotWidth = width - leftPad - rightPad;
-    const height = topPad + activities.length * rowHeight + 10;
+    const height = topPad + activities.length * rowHeight + 12;
 
     const x = (ms) => leftPad + ((ms - domainStart) / domainSpan) * plotWidth;
 
@@ -104,8 +109,8 @@
     const axisSvg = ticks
       .map((t) => {
         const tx = x(t);
-        return `<line x1="${tx}" y1="${topPad - 6}" x2="${tx}" y2="${height - 6}" stroke="#1a2433" stroke-width="1" />
-                <text x="${tx}" y="${topPad - 12}" font-size="10" fill="#95a8be" text-anchor="middle">${escapeXml(formatTick(t))}</text>`;
+        return `<line x1="${tx}" y1="${topPad - 8}" x2="${tx}" y2="${height - 6}" stroke="#1a2433" stroke-width="1" />
+                <text x="${tx}" y="${topPad - 16}" font-size="13" fill="#95a8be" text-anchor="middle">${escapeXml(formatTick(t))}</text>`;
       })
       .join('');
 
@@ -124,13 +129,13 @@
           const actualWidth = Math.max(1, xActualEnd - xStart);
           const projectedWidth = Math.max(1, xEnd - xActualEnd);
           bars = `
-            <rect x="${xStart}" y="${barY}" width="${actualWidth}" height="${barHeight}" fill="#5fae8c" rx="2" />
-            <rect x="${xActualEnd}" y="${barY}" width="${projectedWidth}" height="${barHeight}" fill="#5fae8c" fill-opacity="0.28" rx="2" />
+            <rect x="${xStart}" y="${barY}" width="${actualWidth}" height="${barHeight}" fill="#5fae8c" rx="3" />
+            <rect x="${xActualEnd}" y="${barY}" width="${projectedWidth}" height="${barHeight}" fill="#5fae8c" fill-opacity="0.28" rx="3" />
           `;
         } else {
           const fillOpacity = activity.estimated ? 0.32 : 0.55;
           const dash = activity.estimated ? 'stroke-dasharray="3,2"' : '';
-          bars = `<rect x="${xStart}" y="${barY}" width="${barWidth}" height="${barHeight}" fill="#2f6fe0" fill-opacity="${fillOpacity}" stroke="#2f6fe0" stroke-width="1" ${dash} rx="2" />`;
+          bars = `<rect x="${xStart}" y="${barY}" width="${barWidth}" height="${barHeight}" fill="#2f6fe0" fill-opacity="${fillOpacity}" stroke="#2f6fe0" stroke-width="1" ${dash} rx="3" />`;
         }
 
         const label = activity.note ? `${activity.name} (${activity.note})` : activity.name;
@@ -138,7 +143,7 @@
         return `
           <g>
             ${bars}
-            <text x="${leftPad}" y="${barY + barHeight + 12}" font-size="11" fill="#dce6f1">${escapeXml(label)}</text>
+            <text x="${leftPad}" y="${barY + barHeight + 17}" font-size="15" fill="#dce6f1">${escapeXml(label)}</text>
           </g>
         `;
       })
@@ -147,8 +152,8 @@
     const nowX = x(nowMs);
     const nowLine =
       nowX >= leftPad && nowX <= width - rightPad
-        ? `<line x1="${nowX}" y1="${topPad - 14}" x2="${nowX}" y2="${height - 4}" stroke="#e4c74a" stroke-width="1.5" stroke-dasharray="4,3" />
-           <text x="${nowX}" y="12" font-size="10" fill="#e4c74a" text-anchor="middle">now</text>`
+        ? `<line x1="${nowX}" y1="${topPad - 20}" x2="${nowX}" y2="${height - 4}" stroke="#e4c74a" stroke-width="1.5" stroke-dasharray="4,3" />
+           <text x="${nowX}" y="14" font-size="13" fill="#e4c74a" text-anchor="middle" font-weight="600">now</text>`
         : '';
 
     return `<svg viewBox="0 0 ${width} ${height}" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="inherit">
