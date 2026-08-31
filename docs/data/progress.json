@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-01T01:28:00+09:00",
+  "generated_at": "2026-09-01T01:43:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "note": "Manually updated snapshot. Planned evolution: a slate-side script commits to a dedicated branch served via raw.githubusercontent.com (per sas0's advice).",
   "current_stage": {
     "name": "aggregation_repair_3344",
     "description": "D74-D76 repair: regenerating 3,344 aggregation outputs that were deleted by mistake",
-    "done": 4009,
+    "done": 4037,
     "baseline_done": 3029,
     "total_to_repair": 3344,
     "started_at": "2026-08-31T05:29:00+09:00"
@@ -25,13 +25,13 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      6.11,
-      5.8,
-      5.76
+      6.15,
+      5.78,
+      5.66
     ]
   },
   "aggregation": {
-    "done": 4009,
+    "done": 4037,
     "total": 6373,
     "note": "6373/6373 at the time of the D76 damage was wrong (the pre-repair total). This field always reflects aggregation_repair_3344's own .done count (including the 3029 baseline)."
   },
