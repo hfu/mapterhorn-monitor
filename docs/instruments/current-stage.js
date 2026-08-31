@@ -3,17 +3,17 @@
 
   function formatDuration(ms) {
     if (!Number.isFinite(ms) || ms < 0) {
-      return '不明';
+      return 'unknown';
     }
     const minutes = ms / 60000;
     if (minutes < 90) {
-      return `約${Math.round(minutes)}分`;
+      return `~${Math.round(minutes)} min`;
     }
     const hours = minutes / 60;
     if (hours < 48) {
-      return `約${hours.toFixed(1)}時間`;
+      return `~${hours.toFixed(1)} hr`;
     }
-    return `約${(hours / 24).toFixed(1)}日`;
+    return `~${(hours / 24).toFixed(1)} days`;
   }
 
   // Linear-rate ETA from the two timestamps embedded in progress.json --
@@ -51,14 +51,14 @@
     try {
       progress = await fetch(config.PROGRESS_URL).then((response) => response.json());
     } catch (error) {
-      container.textContent = 'progress.jsonの取得に失敗しました。';
+      container.textContent = 'Failed to fetch progress.json.';
       return;
     }
 
     const stage = progress.current_stage || {};
     const nameEl = document.createElement('div');
     nameEl.className = 'mjbmon-stage-name';
-    nameEl.textContent = stage.name || '(不明なステージ)';
+    nameEl.textContent = stage.name || '(unknown stage)';
     root.appendChild(nameEl);
 
     if (stage.description) {
@@ -79,8 +79,8 @@
       const numbers = document.createElement('div');
       numbers.className = 'mjbmon-stage-numbers';
       numbers.innerHTML = `
-        <span class="mjbmon-stage-done">${repaired.toLocaleString('ja-JP')}</span>
-        <span class="mjbmon-stage-total">/ ${total.toLocaleString('ja-JP')}</span>
+        <span class="mjbmon-stage-done">${repaired.toLocaleString('en-US')}</span>
+        <span class="mjbmon-stage-total">/ ${total.toLocaleString('en-US')}</span>
         <span class="mjbmon-stage-pct">(${pct.toFixed(1)}%)</span>
       `;
       root.appendChild(numbers);
@@ -99,10 +99,10 @@
     grid.className = 'mjbmon-stage-eta-grid';
 
     const boxes = [
-      ['累計 .done件数', `${done.toLocaleString('ja-JP')}`],
-      ['ペース', eta ? `${eta.ratePerMinute.toFixed(2)}件/分` : '算出不可'],
-      ['ETA残り', eta ? formatDuration(eta.remainingMs) : '算出不可'],
-      ['開始時刻', stage.started_at ? new Date(stage.started_at).toLocaleString('ja-JP', { hour12: false }) : '－']
+      ['Cumulative .done count', `${done.toLocaleString('en-US')}`],
+      ['Rate', eta ? `${eta.ratePerMinute.toFixed(2)} items/min` : 'n/a'],
+      ['ETA remaining', eta ? formatDuration(eta.remainingMs) : 'n/a'],
+      ['Started at', stage.started_at ? new Date(stage.started_at).toLocaleString('en-US', { hour12: false }) : '-']
     ];
     boxes.forEach(([label, value]) => {
       const box = document.createElement('div');
@@ -114,7 +114,7 @@
 
     const caption = document.createElement('p');
     caption.className = 'mjbmon-caption';
-    caption.textContent = `スナップショット取得時刻: ${new Date(progress.generated_at).toLocaleString('ja-JP', { hour12: false })}${
+    caption.textContent = `Snapshot taken at: ${new Date(progress.generated_at).toLocaleString('en-US', { hour12: false })}${
       progress.note ? ' — ' + progress.note : ''
     }`;
     root.appendChild(caption);
@@ -124,7 +124,7 @@
 
   MJBMON.registerInstrument({
     key: 'current-stage',
-    name: '現在のステージ',
+    name: 'Current Stage',
     parentKey: 'root',
     order: 0,
     render

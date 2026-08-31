@@ -2,7 +2,7 @@
   const config = window.MJBMON_CONFIG || {};
 
   function formatTimestamp(iso) {
-    return new Date(iso).toLocaleString('ja-JP', { hour12: false });
+    return new Date(iso).toLocaleString('en-US', { hour12: false });
   }
 
   async function render(container) {
@@ -12,13 +12,13 @@
     try {
       entries = await fetch(config.BUILD_LOG_URL).then((response) => response.json());
     } catch (error) {
-      container.textContent = 'build_log.jsonの取得に失敗しました。';
+      container.textContent = 'Failed to fetch build_log.json.';
       return;
     }
 
     const caption = document.createElement('p');
     caption.className = 'mjbmon-caption';
-    caption.textContent = 'mapterhorn-japan-bridge DECISIONS.mdのD番号エントリーをそのまま表示しています。';
+    caption.textContent = 'Mirrors the D-numbered entries in mapterhorn-japan-bridge\'s DECISIONS.md.';
     container.appendChild(caption);
 
     const list = document.createElement('ul');
@@ -51,7 +51,7 @@
 
   MJBMON.registerInstrument({
     key: 'build-log',
-    name: '更新履歴',
+    name: 'Change Log',
     parentKey: 'root',
     order: 2,
     render

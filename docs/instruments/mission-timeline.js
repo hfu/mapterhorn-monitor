@@ -17,7 +17,6 @@
   // renders for +Create'd objects) -- so, same resolution: a custom SVG
   // view registered as a normal mjbmon.instrument, below, rather than
   // fighting an rc1 build's undocumented object-mutability requirements.
-  const GROUP_NAME = 'D74-D76 復旧 → 号1 最終ビルド';
   const HOUR = 60 * 60 * 1000;
 
   // Sequential estimated durations for the steps after the live
@@ -29,12 +28,12 @@
   // label text (D73's parenthetical labels got unreadable once wrapped in
   // narrow SVG bars).
   const PLANNED_STEPS = [
-    { name: 'downsampling 再収束', durationMs: 2 * HOUR, estimated: true },
+    { name: 'downsampling reconvergence', durationMs: 2 * HOUR, estimated: true },
     { name: 'bundle.py + merge_japan_bundles.py', durationMs: 4 * HOUR, estimated: true },
-    { name: 'pmtiles merge (z0-7 Mapterhorn + z8+ 自前)', durationMs: 0.5 * HOUR, estimated: true },
+    { name: 'pmtiles merge (z0-7 Mapterhorn + z8+ own)', durationMs: 0.5 * HOUR, estimated: true },
     { name: 'check_pmtiles_integrity.py', durationMs: 0.5 * HOUR, estimated: true },
-    { name: '目視確認: 市松模様の再評価', durationMs: 0.5 * HOUR, estimated: true },
-    { name: 'stars へ rsync', durationMs: 7 * HOUR, estimated: false, note: 'D73実績: 約7時間・311GB@~11MB/s' }
+    { name: 'Visual check: re-assess the checkerboard artifact', durationMs: 0.5 * HOUR, estimated: true },
+    { name: 'rsync to stars', durationMs: 7 * HOUR, estimated: false, note: 'D73 actual: ~7h, 311GB @ ~11MB/s' }
   ];
 
   function buildActivities(progress) {
@@ -55,8 +54,8 @@
 
     const activities = [
       {
-        name: stage.name || '現在のステージ',
-        note: `${repaired.toLocaleString('ja-JP')}/${total.toLocaleString('ja-JP')}件`,
+        name: stage.name || 'Current stage',
+        note: `${repaired.toLocaleString('en-US')}/${total.toLocaleString('en-US')} items`,
         start: startedMs,
         actualEnd: generatedMs,
         end: Math.max(projectedEndMs, generatedMs + 60000),
@@ -76,7 +75,7 @@
   }
 
   function formatTick(ms) {
-    return new Date(ms).toLocaleString('ja-JP', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    return new Date(ms).toLocaleString('en-US', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
   }
 
   function escapeXml(value) {
@@ -134,7 +133,7 @@
           bars = `<rect x="${xStart}" y="${barY}" width="${barWidth}" height="${barHeight}" fill="#2f6fe0" fill-opacity="${fillOpacity}" stroke="#2f6fe0" stroke-width="1" ${dash} rx="2" />`;
         }
 
-        const label = activity.note ? `${activity.name}(${activity.note})` : activity.name;
+        const label = activity.note ? `${activity.name} (${activity.note})` : activity.name;
 
         return `
           <g>
@@ -149,7 +148,7 @@
     const nowLine =
       nowX >= leftPad && nowX <= width - rightPad
         ? `<line x1="${nowX}" y1="${topPad - 14}" x2="${nowX}" y2="${height - 4}" stroke="#e4c74a" stroke-width="1.5" stroke-dasharray="4,3" />
-           <text x="${nowX}" y="12" font-size="10" fill="#e4c74a" text-anchor="middle">現在</text>`
+           <text x="${nowX}" y="12" font-size="10" fill="#e4c74a" text-anchor="middle">now</text>`
         : '';
 
     return `<svg viewBox="0 0 ${width} ${height}" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="inherit">
@@ -166,14 +165,14 @@
     try {
       progress = await fetch(config.PROGRESS_URL).then((response) => response.json());
     } catch (error) {
-      container.textContent = 'progress.jsonの取得に失敗しました。';
+      container.textContent = 'Failed to fetch progress.json.';
       return;
     }
 
     const caption = document.createElement('p');
     caption.className = 'mjbmon-caption';
     caption.textContent =
-      '実線=実績・進行中(濃)/見積り残り(薄) — 破線枠=完全な見積り — 実線枠(青)=歴史的実績に基づく見積り(rsync)。D74-D76復旧完了後の号1最終ビルドまでの全工程。';
+      'Solid = actual/in-progress (dark) / projected remainder (light) — dashed outline = pure estimate — solid blue outline = estimate anchored to a historical measurement (rsync). Covers every step from now through Generation 1\'s final rebuild after the D74-D76 repair.';
     container.appendChild(caption);
 
     const { activities, nowMs } = buildActivities(progress);
@@ -184,7 +183,7 @@
 
   MJBMON.registerInstrument({
     key: 'mission-timeline',
-    name: 'ミッションタイムライン(ETA)',
+    name: 'Mission Timeline (ETA)',
     parentKey: 'root',
     order: 4,
     render

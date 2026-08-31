@@ -2,9 +2,9 @@
   const config = window.MJBMON_CONFIG || {};
 
   const STATUS_LABEL = {
-    published: '公開中',
-    local_only: 'slateローカルのみ',
-    not_yet_built: '未生成'
+    published: 'published',
+    local_only: 'slate-local only',
+    not_yet_built: 'not yet built'
   };
 
   const STATUS_CLASS = {
@@ -15,7 +15,7 @@
 
   function formatBytes(bytes) {
     if (bytes == null) {
-      return '－';
+      return '-';
     }
     const gb = bytes / 1e9;
     if (gb >= 1) {
@@ -26,7 +26,7 @@
 
   function formatZoomRange(entry) {
     if (entry.min_zoom == null || entry.max_zoom == null) {
-      return '－';
+      return '-';
     }
     return `z${entry.min_zoom} - z${entry.max_zoom}`;
   }
@@ -51,10 +51,10 @@
     const grid = document.createElement('div');
     grid.className = 'mjbmon-pmtiles-meta-grid';
     const metaRows = [
-      ['ズーム範囲', formatZoomRange(entry)],
-      ['タイル数', entry.tile_count != null ? entry.tile_count.toLocaleString('ja-JP') : '－'],
-      ['サイズ', formatBytes(entry.size_bytes)],
-      ['clustered', entry.clustered == null ? '－' : entry.clustered ? 'true' : 'false']
+      ['Zoom range', formatZoomRange(entry)],
+      ['Tile count', entry.tile_count != null ? entry.tile_count.toLocaleString('en-US') : '-'],
+      ['Size', formatBytes(entry.size_bytes)],
+      ['clustered', entry.clustered == null ? '-' : entry.clustered ? 'true' : 'false']
     ];
     metaRows.forEach(([label, value]) => {
       const cell = document.createElement('div');
@@ -85,33 +85,6 @@
       card.appendChild(note);
     }
 
-    const actions = document.createElement('div');
-    actions.className = 'mjbmon-pmtiles-actions';
-    if (entry.viewer_url) {
-      const link = document.createElement('a');
-      link.className = 'mjbmon-pmtiles-link';
-      link.href = entry.viewer_url;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.textContent = '地図で見る ↗';
-      actions.appendChild(link);
-    } else {
-      const disabled = document.createElement('span');
-      disabled.className = 'mjbmon-pmtiles-link mjbmon-pmtiles-link-disabled';
-      disabled.textContent = entry.status === 'not_yet_built' ? 'まだ生成されていません' : '公開URLなし(未公開)';
-      actions.appendChild(disabled);
-    }
-    if (entry.tilejson_url) {
-      const tj = document.createElement('a');
-      tj.className = 'mjbmon-pmtiles-link mjbmon-pmtiles-link-secondary';
-      tj.href = entry.tilejson_url;
-      tj.target = '_blank';
-      tj.rel = 'noopener noreferrer';
-      tj.textContent = 'TileJSON';
-      actions.appendChild(tj);
-    }
-    card.appendChild(actions);
-
     return card;
   }
 
@@ -122,14 +95,14 @@
     try {
       manifest = await fetch(config.PMTILES_MANIFEST_URL).then((response) => response.json());
     } catch (error) {
-      container.textContent = 'pmtiles_manifest.jsonの取得に失敗しました。';
+      container.textContent = 'Failed to fetch pmtiles_manifest.json.';
       return;
     }
 
     const caption = document.createElement('p');
     caption.className = 'mjbmon-caption';
     caption.textContent =
-      'z0-7(Mapterhorn由来)+ z8+(自前GSI)の2つの構成要素と、それをpmtiles mergeで統合した最終成果物。手動更新のスナップショット。';
+      'The two constituent archives -- z0-7 (from Mapterhorn) and z8+ (own GSI data) -- and the final product produced by merging them with pmtiles merge. Manually updated snapshot.';
     container.appendChild(caption);
 
     const list = document.createElement('div');
@@ -140,7 +113,7 @@
 
   MJBMON.registerInstrument({
     key: 'pmtiles-manifest',
-    name: '構成PMTiles',
+    name: 'Constituent PMTiles',
     parentKey: 'root',
     order: 6,
     render

@@ -14,7 +14,7 @@
     const caption = document.createElement('p');
     caption.className = 'mjbmon-caption';
     caption.style.padding = '12px 16px 0';
-    caption.innerHTML = `本番ビューア(<a href="${VIEWER_URL}" target="_blank" rel="noopener noreferrer">${VIEWER_URL}</a>)を直接埋め込み。最終pmtiles mergeとstars反映のたびにここで目視確認する。`;
+    caption.innerHTML = `Embeds the production viewer directly (<a href="${VIEWER_URL}" target="_blank" rel="noopener noreferrer">${VIEWER_URL}</a>). Used for a visual check here after every final pmtiles merge and stars deploy.`;
     container.appendChild(caption);
 
     const iframe = document.createElement('iframe');
@@ -29,7 +29,7 @@
 
   MJBMON.registerInstrument({
     key: 'live-viewer',
-    name: '本番ビューア(視覚確認)',
+    name: 'Live Viewer',
     parentKey: 'root',
     autoRefresh: false,
     order: 5,

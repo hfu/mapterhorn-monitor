@@ -1,13 +1,13 @@
 [
-  { "id": "D71", "time": "2026-08-30T12:10:00+09:00", "severity": "info", "summary": "pmtiles-store.old-internal-disk(284GB)を削除、mergeステージのディスク逼迫を解消" },
-  { "id": "D72", "time": "2026-08-30T13:30:00+09:00", "severity": "success", "summary": "check_pmtiles_integrity.pyでpublish_cycle_12ローカル成果物が孤立タイル0件(CLEAN)を確認" },
-  { "id": "D73", "time": "2026-08-30T19:58:00+09:00", "severity": "success", "summary": "publish_cycle_12完走、stars本番反映完了" },
-  { "id": "D74", "time": "2026-08-30T22:50:00+09:00", "severity": "warning", "summary": "pmtiles-store全体の50%の位置でstale child_z重複ファイルを発見、212GB削除(市松模様の有力仮説)" },
-  { "id": "D75", "time": "2026-08-31T00:00:00+09:00", "severity": "error", "summary": "D74の削除ロジックに欠陥、downsampling層の複数child_z共存を見落とし4,396件を過剰削除。check_downsampling_done_integrity.py --fixで修復" },
-  { "id": "D76", "time": "2026-08-31T05:15:00+09:00", "severity": "error", "summary": "aggregation層とdownsampling層の座標名前空間衝突により3,344件のaggregation出力を誤削除。再aggregationで復旧中(進行中)" },
-  { "id": "D77", "time": "2026-08-31T06:50:00+09:00", "severity": "info", "summary": "z7/z8接合境界をレビュー: get_pmtiles_folder()と整合し境界自体は妥当。ただしMapterhorn自身のデータ限界により日本近海の外洋にz6-7で最大27.5%の欠落が接合後も残ることを実測で確認" },
-  { "id": "D78", "time": "2026-08-31T06:55:00+09:00", "severity": "warning", "summary": "D74の「stale cleanupが50%で機能せず」という診断自体が誤りと判明。名前空間を正しく分離した監査スクリプトで再スキャンした結果、真のstaleファイルは0件。市松模様の根本原因は未特定に逆戻り" },
-  { "id": "D79", "time": "2026-08-31T07:15:00+09:00", "severity": "info", "summary": "市松模様の新しい有力仮説: aggregation_merge.pyの512pxブロック単位ブレンド判定が海岸線近くで不連続を生む可能性(未検証)。cubicsplineの不安定性仮説はコード確認により棄却" },
-  { "id": "D80", "time": "2026-08-31T07:45:00+09:00", "severity": "info", "summary": "downsampling_run.py --fixに、D76と同種の未発火の潜在バグを発見(このセッションでは未実行、実害なし)。号2の構造的修正まで温存" },
-  { "id": "D81", "time": "2026-08-31T12:15:00+09:00", "severity": "info", "summary": "「pmtiles clusterが使えない」という記述はextractの制限からの未検証の誤った類推だったと判明。次のjapan-z8plus.pmtiles再生成後、最終merge前に実地検証する" }
+  { "id": "D71", "time": "2026-08-30T12:10:00+09:00", "severity": "info", "summary": "Deleted pmtiles-store.old-internal-disk (284GB), relieving disk pressure at the merge stage" },
+  { "id": "D72", "time": "2026-08-30T13:30:00+09:00", "severity": "success", "summary": "check_pmtiles_integrity.py confirmed publish_cycle_12's local output has zero orphaned tiles (CLEAN)" },
+  { "id": "D73", "time": "2026-08-30T19:58:00+09:00", "severity": "success", "summary": "publish_cycle_12 completed; deployed to stars production" },
+  { "id": "D74", "time": "2026-08-30T22:50:00+09:00", "severity": "warning", "summary": "Found stale duplicate child_z files at 50% of positions across pmtiles-store; deleted 212GB (leading hypothesis for the checkerboard artifact)" },
+  { "id": "D75", "time": "2026-08-31T00:00:00+09:00", "severity": "error", "summary": "D74's deletion logic was flawed: it missed the downsampling layer's legitimate multi-child_z coexistence and over-deleted 4,396 files. Repaired with check_downsampling_done_integrity.py --fix" },
+  { "id": "D76", "time": "2026-08-31T05:15:00+09:00", "severity": "error", "summary": "A coordinate-namespace collision between the aggregation and downsampling layers wrongly deleted 3,344 aggregation outputs. Repair via re-aggregation in progress" },
+  { "id": "D77", "time": "2026-08-31T06:50:00+09:00", "severity": "info", "summary": "Reviewed the z7/z8 splice boundary: consistent with get_pmtiles_folder(), the boundary itself is sound. However, measurements confirmed up to 27.5% of z6-7 tiles remain missing over the seas around Japan even after the splice, due to Mapterhorn's own data limits" },
+  { "id": "D78", "time": "2026-08-31T06:55:00+09:00", "severity": "warning", "summary": "D74's diagnosis (\"stale cleanup fails at 50% of positions\") turned out to be wrong. Re-scanning with a correctly namespace-separated audit script found zero genuinely stale files. The checkerboard artifact's root cause is unidentified again" },
+  { "id": "D79", "time": "2026-08-31T07:15:00+09:00", "severity": "info", "summary": "New leading hypothesis for the checkerboard artifact: aggregation_merge.py's per-512px-block blend decision may create discontinuities near coastlines (unverified). The cubicspline-instability hypothesis was ruled out by code inspection" },
+  { "id": "D80", "time": "2026-08-31T07:45:00+09:00", "severity": "info", "summary": "Found a latent, never-triggered bug in downsampling_run.py --fix of the same kind as D76 (not run this session, no actual harm). Left in place pending Gen. 2's structural fix" },
+  { "id": "D81", "time": "2026-08-31T12:15:00+09:00", "severity": "info", "summary": "The claim that \"pmtiles cluster doesn't work\" turned out to be an unverified, incorrect generalization from the extract limitation. To be tested in practice before the final merge, once japan-z8plus.pmtiles is rebuilt" }
 ]

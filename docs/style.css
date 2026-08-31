@@ -379,33 +379,3 @@ body {
   line-height: 1.5;
 }
 
-.mjbmon-pmtiles-actions {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px;
-}
-
-.mjbmon-pmtiles-link {
-  font-size: 12px;
-  padding: 5px 10px;
-  border-radius: 4px;
-  background: rgba(47, 111, 224, 0.2);
-  color: #7ba7e0;
-  text-decoration: none;
-}
-
-.mjbmon-pmtiles-link:hover {
-  background: rgba(47, 111, 224, 0.35);
-}
-
-.mjbmon-pmtiles-link-secondary {
-  background: transparent;
-  border: 1px solid #243247;
-  color: #95a8be;
-}
-
-.mjbmon-pmtiles-link-disabled {
-  background: transparent;
-  color: #6b7d90;
-  cursor: default;
-}

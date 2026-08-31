@@ -119,12 +119,12 @@ window.MJBMON = (function () {
   openmct.install(openmct.plugins.Espresso());
 
   openmct.types.addType('mjbmon.instrument', {
-    name: '計器',
-    description: 'mapterhorn-japan-bridge モニタの単体表示項目',
+    name: 'Instrument',
+    description: 'A single display item in the mapterhorn-japan-bridge monitor',
     creatable: false
   });
 
-  registerFolder({ key: 'root', name: 'mapterhorn-japan-bridge モニタ' });
+  registerFolder({ key: 'root', name: 'mapterhorn-japan-bridge Monitor' });
 
   openmct.objects.addRoot({ namespace: NAMESPACE, key: 'root' });
   openmct.objects.addProvider(NAMESPACE, {

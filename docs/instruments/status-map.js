@@ -16,7 +16,7 @@
   }
 
   const INFO_PLACEHOLDER_HTML =
-    '<div class="mjbmon-map-legend-row" style="margin:0;color:#95a8be;">地図上の点にカーソルを合わせると詳細が表示されます。</div>';
+    '<div class="mjbmon-map-legend-row" style="margin:0;color:#95a8be;">Hover over a point on the map for details.</div>';
 
   function renderInfoPanel(panel, feature) {
     if (!feature) {
@@ -25,7 +25,7 @@
     }
     const { z, done } = feature.properties;
     const [lon, lat] = feature.geometry.coordinates;
-    const statusText = done ? '再生成 完了' : '再生成 未完了(D76復旧対象)';
+    const statusText = done ? 'Rebuilt' : 'Pending rebuild (D76 repair target)';
     panel.innerHTML = `<strong>z=${z}</strong> (${lon.toFixed(3)}, ${lat.toFixed(3)}) — ${statusText}`;
   }
 
@@ -44,8 +44,8 @@
     const legend = document.createElement('div');
     legend.className = 'mjbmon-map-legend';
     legend.innerHTML = `
-      <div class="mjbmon-map-legend-row"><span class="mjbmon-map-legend-swatch" style="background:${DONE_COLOR}"></span>再生成 完了</div>
-      <div class="mjbmon-map-legend-row"><span class="mjbmon-map-legend-swatch" style="background:${PENDING_COLOR}"></span>再生成 未完了(aggregation_repair_3344 対象)</div>
+      <div class="mjbmon-map-legend-row"><span class="mjbmon-map-legend-swatch" style="background:${DONE_COLOR}"></span>Rebuilt</div>
+      <div class="mjbmon-map-legend-row"><span class="mjbmon-map-legend-swatch" style="background:${PENDING_COLOR}"></span>Pending rebuild (aggregation_repair_3344 target)</div>
     `;
     wrap.appendChild(legend);
 
@@ -58,7 +58,7 @@
     try {
       rows = await fetch(config.AGG_TILES_URL).then((response) => response.json());
     } catch (error) {
-      mapDiv.textContent = 'agg_tiles.jsonの取得に失敗しました。';
+      mapDiv.textContent = 'Failed to fetch agg_tiles.json.';
       return undefined;
     }
 
@@ -113,7 +113,7 @@
 
   MJBMON.registerInstrument({
     key: 'status-map',
-    name: '状況図',
+    name: 'Status Map',
     parentKey: 'root',
     autoRefresh: false,
     order: 1,

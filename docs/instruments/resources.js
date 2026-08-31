@@ -29,10 +29,10 @@
   }
 
   function memoryPressureLabel(level) {
-    if (level === 1) return 'レベル1(逼迫なし)';
-    if (level === 2) return 'レベル2(要注意)';
-    if (level >= 3) return 'レベル3(逼迫)';
-    return '不明';
+    if (level === 1) return 'level 1 (ok)';
+    if (level === 2) return 'level 2 (watch)';
+    if (level >= 3) return 'level 3 (critical)';
+    return 'unknown';
   }
 
   async function render(container) {
@@ -42,7 +42,7 @@
     try {
       progress = await fetch(config.PROGRESS_URL).then((response) => response.json());
     } catch (error) {
-      container.textContent = 'progress.jsonの取得に失敗しました。';
+      container.textContent = 'Failed to fetch progress.json.';
       return;
     }
 
@@ -55,7 +55,7 @@
       renderBar(
         root,
         disk.volume,
-        `使用 ${usedGb.toLocaleString('ja-JP')}GB / 全${disk.total_gb.toLocaleString('ja-JP')}GB (空き${disk.avail_gb.toLocaleString('ja-JP')}GB)`,
+        `used ${usedGb.toLocaleString('en-US')}GB / total ${disk.total_gb.toLocaleString('en-US')}GB (free ${disk.avail_gb.toLocaleString('en-US')}GB)`,
         ratio,
         0.7,
         0.9
@@ -64,20 +64,20 @@
 
     const memLevel = resources.memory_pressure_level;
     if (typeof memLevel === 'number') {
-      renderBar(root, 'メモリ圧力', memoryPressureLabel(memLevel), (memLevel - 1) / 2, 0.4, 0.8);
+      renderBar(root, 'Memory pressure', memoryPressureLabel(memLevel), (memLevel - 1) / 2, 0.4, 0.8);
     }
 
     if (Array.isArray(resources.load_average)) {
       const loadBox = document.createElement('div');
       loadBox.className = 'mjbmon-stat-box';
       loadBox.style.marginTop = '16px';
-      loadBox.innerHTML = `<div class="mjbmon-stat-label">load average (1/5/15分)</div><div class="mjbmon-stat-value">${resources.load_average.join(' / ')}</div>`;
+      loadBox.innerHTML = `<div class="mjbmon-stat-label">load average (1/5/15 min)</div><div class="mjbmon-stat-value">${resources.load_average.join(' / ')}</div>`;
       root.appendChild(loadBox);
     }
 
     const caption = document.createElement('p');
     caption.className = 'mjbmon-caption';
-    caption.textContent = `スナップショット取得時刻: ${new Date(progress.generated_at).toLocaleString('ja-JP', { hour12: false })}`;
+    caption.textContent = `Snapshot taken at: ${new Date(progress.generated_at).toLocaleString('en-US', { hour12: false })}`;
     root.appendChild(caption);
 
     container.appendChild(root);
@@ -85,7 +85,7 @@
 
   MJBMON.registerInstrument({
     key: 'resources',
-    name: '資源状況',
+    name: 'Resources',
     parentKey: 'root',
     order: 3,
     render
