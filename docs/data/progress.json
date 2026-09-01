@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T06:46:00+09:00",
+  "generated_at": "2026-09-02T07:06:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "integrity_clean_enough",
-    "description": "check_pmtiles_integrity.py: 2,048 orphaned tiles (all z12) -- a massive improvement from D100s 1,818,530. Traced to the known 4 structurally-missing downsampling items in the East China Sea (123.75-129.38E, 31.95-36.60N), matching D77s known open-ocean data-gap pattern -- not a new bug. Next: D79 visual check (coastal checkerboard artifacts), then publish to stars (with Hidenori go-ahead)."
+    "name": "ready_for_publish_confirmation",
+    "description": "All rebuild steps complete: downsampling -> bundle -> merge -> cluster -> final merge -> integrity check (2,048 orphans, traced to a known East China Sea data gap, not a new bug) -> D79 visual check (checkerboard artifact not reproduced in 5 examined crops around Kurahashi/Kure). The archive is ready for publish, pending Hidenoris explicit go-ahead for the rsync to stars."
   },
   "resources": {
     "disk": [
