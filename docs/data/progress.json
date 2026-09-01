@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-02T03:12:00+09:00",
+  "generated_at": "2026-09-02T03:27:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
     "name": "downsampling_repair2",
-    "description": "check_pmtiles_integrity.py found 1,818,530 orphaned tiles (86% of downsampling .done markers were stale). Stale markers cleared, rebuilding all 8,223 downsampling items. D101 initially misdiagnosed PRIORITY_MODE as dead code; D102 corrected this -- pace has been strong (1,291 at 21:32 JST -> 4,148 at 02:46 JST, ~9/min average through an SSH monitoring gap 21:46-02:33 JST). Publish to stars remains on hold until this completes and integrity is reverified.",
-    "done": 4754,
+    "description": "check_pmtiles_integrity.py found 1,818,530 orphaned tiles (86% of downsampling .done markers were stale). Stale markers cleared, rebuilding all 8,223 downsampling items. Now on fine-zoom items, sharply accelerated (~98/min). Nearly complete -- publish to stars remains on hold until this finishes and integrity is reverified.",
+    "done": 6226,
     "baseline_done": 1136,
     "total_to_repair": 7079,
     "started_at": "2026-09-01T20:47:00+09:00"
@@ -24,9 +24,9 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      5.89,
-      5.13,
-      4.94
+      4.66,
+      4.74,
+      4.78
     ]
   },
   "aggregation": {
