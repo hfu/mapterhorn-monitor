@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T04:58:00+09:00",
+  "generated_at": "2026-09-02T05:03:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "bundle_rebuild4",
-    "description": "D104: bundle_rebuild4 running successfully with TMPDIR fixed (pmtiles library Writer was silently buffering to the boot disk instead of the output volume). bundle-store at 267GB and growing (D99 precedent: ~393GB total). Permanent fix applied to bundle.py/merge_japan_bundles.py so future runs (1.5-go/2-go) do not need the manual env var. Publish to stars remains on hold."
+    "name": "merge_bundles2",
+    "description": "bundle.py completed cleanly in 43 minutes (0 errors, 23 files, 289GB) with the permanent TMPDIR fix (D104) in place. Now running merge_japan_bundles.py -> will produce bundle-store/mapterhorn-japan-bridge.pmtiles. Next: pmtiles cluster -> pmtiles merge (with global-overview-backup.pmtiles) -> check_pmtiles_integrity.py -> D79 visual check -> publish to stars (with Hidenori go-ahead)."
   },
   "resources": {
     "disk": [
