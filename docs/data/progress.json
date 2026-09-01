@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T20:02:00+09:00",
+  "generated_at": "2026-09-01T20:16:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
     "name": "pmtiles_merge_final",
@@ -10,7 +10,7 @@
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 779,
+        "avail_gb": 635,
         "total_gb": 1800
       },
       {
@@ -21,9 +21,9 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.69,
-      1.8,
-      2.0
+      2.2,
+      2.12,
+      2.03
     ]
   },
   "aggregation": {
