@@ -1,10 +1,13 @@
 {
-  "generated_at": "2026-09-01T20:31:00+09:00",
+  "generated_at": "2026-09-01T20:50:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "check_pmtiles_integrity",
-    "description": "Final merge complete: mapterhorn-japan-bridge-with-overview.pmtiles (204.9GB, z0-16, 2,015,281 tiles, clustered:true, global-overview 13,524 tiles correctly added). Now checking for orphaned tiles.",
-    "started_at": "2026-09-01T20:31:00+09:00"
+    "name": "downsampling_repair2",
+    "description": "check_pmtiles_integrity.py found 1,818,530 orphaned tiles (86% of downsampling .done markers were stale, referencing deleted pmtiles-store files -- same bug class as D53/D69, larger scale). Stale markers cleared, rebuilding all 8,223 downsampling items. Publish to stars is on hold until this is clean.",
+    "done": 195,
+    "baseline_done": 1136,
+    "total_to_repair": 7079,
+    "started_at": "2026-09-01T20:47:00+09:00"
   },
   "resources": {
     "disk": [
