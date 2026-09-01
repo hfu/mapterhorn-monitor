@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-01T21:32:00+09:00",
+  "generated_at": "2026-09-02T01:21:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
     "name": "downsampling_repair2",
-    "description": "check_pmtiles_integrity.py found 1,818,530 orphaned tiles (86% of downsampling .done markers were stale, referencing deleted pmtiles-store files -- same bug class as D53/D69, larger scale). Stale markers cleared, rebuilding all 8,223 downsampling items. D101 initially misdiagnosed PRIORITY_MODE as dead code; D102 corrected this -- it works correctly, the pace is just inherently I/O-bound and variable by item size (picked up from ~2/min to ~6/min). Publish to stars is on hold until this is clean.",
+    "description": "check_pmtiles_integrity.py found 1,818,530 orphaned tiles (86% of downsampling .done markers were stale). Stale markers cleared, rebuilding all 8,223 downsampling items. D101 initially misdiagnosed PRIORITY_MODE as dead code; D102 corrected this. As of last confirmed data (2026-09-01 21:32 JST): 1,291/7,079 done, pace ~5/min. NOTE: SSH monitoring to slate has been blocked since 21:46 JST by a Cloudflare Access re-authentication prompt awaiting Hidenori -- all figures below this point are stale and do not reflect current state. Publish to stars remains on hold.",
     "done": 1291,
     "baseline_done": 1136,
     "total_to_repair": 7079,
