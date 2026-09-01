@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T19:31:00+09:00",
+  "generated_at": "2026-09-01T19:46:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
     "name": "pmtiles_cluster",
@@ -10,20 +10,20 @@
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 779,
+        "avail_gb": 922,
         "total_gb": 1800
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 1600,
+        "avail_gb": 1500,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.7,
-      1.73,
-      1.85
+      2.21,
+      2.4,
+      2.32
     ]
   },
   "aggregation": {
