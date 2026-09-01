@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-09-01T18:46:00+09:00",
+  "generated_at": "2026-09-01T19:01:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "bundle_rebuild",
-    "description": "bundle.py rebuilding japan-z8plus.pmtiles from the repaired pmtiles-store (no fine-grained item counter -- see build log for region-level progress)",
-    "started_at": "2026-09-01T18:16:00+09:00"
+    "name": "merge_japan_bundles",
+    "description": "bundle.py complete (23 files, ~30min, much faster than the 4h estimate) -- now merging regional bundles into japan-z8plus.pmtiles",
+    "started_at": "2026-09-01T19:01:00+09:00"
   },
   "resources": {
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 789,
+        "avail_gb": 779,
         "total_gb": 1800
       },
       {
@@ -21,9 +21,9 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      3.12,
-      2.63,
-      2.51
+      1.75,
+      1.77,
+      1.96
     ]
   },
   "aggregation": {
