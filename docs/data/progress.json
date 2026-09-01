@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-01T18:00:00+09:00",
+  "generated_at": "2026-09-01T18:16:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
     "name": "downsampling_reconvergence",
     "description": "aggregation_repair_3344 is complete (6,373/6,373) -- now reconverging the downsampling pyramid so every zoom level reflects the repaired aggregation outputs",
-    "done": 8024,
+    "done": 8215,
     "baseline_done": 8020,
     "total_to_repair": 203,
     "started_at": "2026-09-01T18:02:00+09:00"
@@ -24,9 +24,9 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.92,
-      2.53,
-      4.18
+      1.81,
+      2.71,
+      3.56
     ]
   },
   "aggregation": {
@@ -35,9 +35,9 @@
     "note": "6373/6373 at the time of the D76 damage was wrong (the pre-repair total). This field always reflects aggregation_repair_3344's own .done count (including the 3029 baseline)."
   },
   "downsampling": {
-    "done": 8020,
+    "done": 8215,
     "ready_not_run": 0,
-    "not_ready": 203,
+    "not_ready": 8,
     "total": 8223
   },
   "global_overview": {
