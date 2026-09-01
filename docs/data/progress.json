@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-09-01T19:46:00+09:00",
+  "generated_at": "2026-09-01T20:02:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "pmtiles_cluster",
-    "description": "merge_japan_bundles.py complete (2,001,757 tiles, mapterhorn-japan-bridge.pmtiles is 201.6GB) -- testing pmtiles cluster on it per D81 before the final merge with global-overview.pmtiles",
-    "started_at": "2026-09-01T19:31:00+09:00"
+    "name": "pmtiles_merge_final",
+    "description": "pmtiles cluster confirmed clustered:true (D81 verified). Now running the final pmtiles merge: global-overview.pmtiles (z0-7, Mapterhorn) + mapterhorn-japan-bridge.pmtiles (z8+, own, clustered) -> final combined archive",
+    "started_at": "2026-09-01T20:02:00+09:00"
   },
   "resources": {
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 922,
+        "avail_gb": 779,
         "total_gb": 1800
       },
       {
@@ -21,9 +21,9 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      2.21,
-      2.4,
-      2.32
+      1.69,
+      1.8,
+      2.0
     ]
   },
   "aggregation": {
