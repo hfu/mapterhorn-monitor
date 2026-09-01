@@ -1,13 +1,9 @@
 {
-  "generated_at": "2026-09-02T03:27:00+09:00",
+  "generated_at": "2026-09-02T03:48:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "downsampling_repair2",
-    "description": "check_pmtiles_integrity.py found 1,818,530 orphaned tiles (86% of downsampling .done markers were stale). Stale markers cleared, rebuilding all 8,223 downsampling items. Now on fine-zoom items, sharply accelerated (~98/min). Nearly complete -- publish to stars remains on hold until this finishes and integrity is reverified.",
-    "done": 6226,
-    "baseline_done": 1136,
-    "total_to_repair": 7079,
-    "started_at": "2026-09-01T20:47:00+09:00"
+    "name": "bundle_rebuild2",
+    "description": "downsampling_repair2 completed (8,219/8,223 done, 4 structurally not-ready -- confirmed via check_downsampling_readiness.py, an improvement on D98s prior 8). Now re-running bundle.py -> merge_japan_bundles.py -> pmtiles cluster -> pmtiles merge, since the prior merged archive (D100) is known to contain the stale-marker orphaned tiles and must not be published. Publish to stars remains on hold until check_pmtiles_integrity.py is clean."
   },
   "resources": {
     "disk": [
@@ -35,9 +31,9 @@
     "note": "6373/6373 at the time of the D76 damage was wrong (the pre-repair total). This field always reflects aggregation_repair_3344's own .done count (including the 3029 baseline)."
   },
   "downsampling": {
-    "done": 8215,
+    "done": 8219,
     "ready_not_run": 0,
-    "not_ready": 8,
+    "not_ready": 4,
     "total": 8223
   },
   "global_overview": {
