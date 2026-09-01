@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T19:01:00+09:00",
+  "generated_at": "2026-09-01T19:16:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
     "name": "merge_japan_bundles",
@@ -10,20 +10,20 @@
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 779,
+        "avail_gb": 958,
         "total_gb": 1800
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 1700,
+        "avail_gb": 1500,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.75,
-      1.77,
-      1.96
+      2.27,
+      2.07,
+      2.02
     ]
   },
   "aggregation": {
