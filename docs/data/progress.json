@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T18:20:00+09:00",
+  "generated_at": "2026-09-01T18:31:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
     "name": "bundle_rebuild",
@@ -10,7 +10,7 @@
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 965,
+        "avail_gb": 906,
         "total_gb": 1800
       },
       {
@@ -21,9 +21,9 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.81,
-      2.71,
-      3.56
+      2.61,
+      2.28,
+      2.64
     ]
   },
   "aggregation": {
