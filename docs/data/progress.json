@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-01T15:45:00+09:00",
+  "generated_at": "2026-09-01T16:00:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
     "name": "aggregation_repair_3344",
     "description": "D74-D76 repair: regenerating 3,344 aggregation outputs that were deleted by mistake",
-    "done": 6079,
+    "done": 6114,
     "baseline_done": 3029,
     "total_to_repair": 3344,
     "started_at": "2026-08-31T05:29:00+09:00"
@@ -24,13 +24,13 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      6.53,
-      6.75,
-      6.67
+      6.94,
+      6.71,
+      6.63
     ]
   },
   "aggregation": {
-    "done": 6079,
+    "done": 6114,
     "total": 6373,
     "note": "6373/6373 at the time of the D76 damage was wrong (the pre-repair total). This field always reflects aggregation_repair_3344's own .done count (including the 3029 baseline)."
   },
