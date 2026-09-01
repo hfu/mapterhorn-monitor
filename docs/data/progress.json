@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T07:21:00+09:00",
+  "generated_at": "2026-09-02T07:41:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "publish_rsync",
-    "description": "Hidenori approved publish. Old stars file (311.4GB, likely inflated by the D74 stale-duplicate-file bug) deleted; new file (220.65GB, the clean rebuild) rsyncing to stars@stars.local now (~11MB/s, ETA ~5.5h from 07:20 JST). stars.optgeo.org/mapterhorn-japan-bridge will 404 until this completes -- expected, documented downtime per the D50/D51 headroom-avoidance pattern."
+    "name": "publish_rsync + 1.5-go prep",
+    "description": "1-go publish rsync in progress (5%, 12.3/220.65GB, ETA ~5h). In parallel, implementing 1.5-go prep per Hidenoris instructions: D107 (pmtiles-store layer separation, aggregation vs downsampling x elevation vs lineage) implemented and pushed. Next: lineage tile pipeline (EMIT_LINEAGE flag, majority-vote downsampling wiring), then filename refactor, then a small rehearsal-environment test before asking Hidenori to approve a full-scale 1.5-go launch."
   },
   "resources": {
     "disk": [
