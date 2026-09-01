@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T07:06:00+09:00",
+  "generated_at": "2026-09-02T07:21:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "ready_for_publish_confirmation",
-    "description": "All rebuild steps complete: downsampling -> bundle -> merge -> cluster -> final merge -> integrity check (2,048 orphans, traced to a known East China Sea data gap, not a new bug) -> D79 visual check (checkerboard artifact not reproduced in 5 examined crops around Kurahashi/Kure). The archive is ready for publish, pending Hidenoris explicit go-ahead for the rsync to stars."
+    "name": "publish_rsync",
+    "description": "Hidenori approved publish. Old stars file (311.4GB, likely inflated by the D74 stale-duplicate-file bug) deleted; new file (220.65GB, the clean rebuild) rsyncing to stars@stars.local now (~11MB/s, ETA ~5.5h from 07:20 JST). stars.optgeo.org/mapterhorn-japan-bridge will 404 until this completes -- expected, documented downtime per the D50/D51 headroom-avoidance pattern."
   },
   "resources": {
     "disk": [
