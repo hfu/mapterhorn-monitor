@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T04:00:00+09:00",
+  "generated_at": "2026-09-02T04:19:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "bundle_rebuild3",
-    "description": "downsampling complete (8,219/8,223, 4 structurally not-ready -- an improvement on D98s 8). bundle.py 1 crashed with ENOSPC (D103): D100s stale mapterhorn-japan-bridge-with-overview.pmtiles, 204.9GB, was never deleted and starved the new run. Deleted it plus the crashed runs partial files (776GB -> 967GB free), restarted as bundle_rebuild3. Publish to stars remains on hold."
+    "name": "bundle_rebuild4",
+    "description": "D104: found the real root cause of the ENOSPC crashes -- the pmtiles library Writer buffers tile bytes in tempfile.TemporaryFile() on TMPDIR (boot disk, only ~100GB free), not on the output volume (962GB free), so 4 parallel workers exhausted the boot disk. Fixed by setting TMPDIR=/Volumes/pmtiles-store/tmp-store/writer-scratch/ (same fix D99 already used for merge_japan_bundles.py, just not previously applied to bundle.py). Restarted as bundle_rebuild4. Publish to stars remains on hold."
   },
   "resources": {
     "disk": [
