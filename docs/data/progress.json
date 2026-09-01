@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T05:28:00+09:00",
+  "generated_at": "2026-09-02T05:44:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "merge_bundles3",
-    "description": "D105: D104s permanent TMPDIR fix was actually a no-op -- os.environ.setdefault() never overrides TMPDIR because macOS SSH/login sessions pre-set it. Fixed to force-override unconditionally, plus an explicit shell-level export as a second safety net. Restarted as merge_bundles3. Publish to stars remains on hold."
+    "name": "pmtiles_cluster2",
+    "description": "merge_japan_bundles.py completed cleanly (217.4GB, 1,777,785 tiles) with 0 errors -- the TMPDIR fix (D105) held. Now running pmtiles cluster on the merged archive (D81 precedent). Next: restore global-overview.pmtiles -> pmtiles merge -> check_pmtiles_integrity.py -> D79 visual check -> publish to stars (with Hidenori go-ahead)."
   },
   "resources": {
     "disk": [
