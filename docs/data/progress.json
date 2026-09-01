@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T03:48:00+09:00",
+  "generated_at": "2026-09-02T04:00:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "bundle_rebuild2",
-    "description": "downsampling_repair2 completed (8,219/8,223 done, 4 structurally not-ready -- confirmed via check_downsampling_readiness.py, an improvement on D98s prior 8). Now re-running bundle.py -> merge_japan_bundles.py -> pmtiles cluster -> pmtiles merge, since the prior merged archive (D100) is known to contain the stale-marker orphaned tiles and must not be published. Publish to stars remains on hold until check_pmtiles_integrity.py is clean."
+    "name": "bundle_rebuild3",
+    "description": "downsampling complete (8,219/8,223, 4 structurally not-ready -- an improvement on D98s 8). bundle.py 1 crashed with ENOSPC (D103): D100s stale mapterhorn-japan-bridge-with-overview.pmtiles, 204.9GB, was never deleted and starved the new run. Deleted it plus the crashed runs partial files (776GB -> 967GB free), restarted as bundle_rebuild3. Publish to stars remains on hold."
   },
   "resources": {
     "disk": [
