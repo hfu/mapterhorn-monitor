@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T05:03:00+09:00",
+  "generated_at": "2026-09-02T05:17:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "merge_bundles2",
-    "description": "bundle.py completed cleanly in 43 minutes (0 errors, 23 files, 289GB) with the permanent TMPDIR fix (D104) in place. Now running merge_japan_bundles.py -> will produce bundle-store/mapterhorn-japan-bridge.pmtiles. Next: pmtiles cluster -> pmtiles merge (with global-overview-backup.pmtiles) -> check_pmtiles_integrity.py -> D79 visual check -> publish to stars (with Hidenori go-ahead)."
+    "name": "merge_bundles3",
+    "description": "D105: D104s permanent TMPDIR fix was actually a no-op -- os.environ.setdefault() never overrides TMPDIR because macOS SSH/login sessions pre-set it. Fixed to force-override unconditionally, plus an explicit shell-level export as a second safety net. Restarted as merge_bundles3. Publish to stars remains on hold."
   },
   "resources": {
     "disk": [
