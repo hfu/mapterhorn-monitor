@@ -28,7 +28,6 @@
   // label text (D73's parenthetical labels got unreadable once wrapped in
   // narrow SVG bars).
   const PLANNED_STEPS = [
-    { name: 'downsampling reconvergence', durationMs: 2 * HOUR, estimated: true },
     { name: 'bundle.py + merge_japan_bundles.py', durationMs: 4 * HOUR, estimated: true },
     { name: 'pmtiles merge (z0-7 Mapterhorn + z8+ own)', durationMs: 0.5 * HOUR, estimated: true },
     { name: 'check_pmtiles_integrity.py', durationMs: 0.5 * HOUR, estimated: true },

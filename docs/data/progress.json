@@ -2,12 +2,12 @@
   "generated_at": "2026-09-01T18:00:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "aggregation_repair_3344",
-    "description": "D74-D76 repair: regenerating 3,344 aggregation outputs that were deleted by mistake",
-    "done": 6373,
-    "baseline_done": 3029,
-    "total_to_repair": 3344,
-    "started_at": "2026-08-31T05:29:00+09:00"
+    "name": "downsampling_reconvergence",
+    "description": "aggregation_repair_3344 is complete (6,373/6,373) -- now reconverging the downsampling pyramid so every zoom level reflects the repaired aggregation outputs",
+    "done": 8024,
+    "baseline_done": 8020,
+    "total_to_repair": 203,
+    "started_at": "2026-09-01T18:02:00+09:00"
   },
   "resources": {
     "disk": [
