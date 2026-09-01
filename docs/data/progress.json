@@ -1,13 +1,10 @@
 {
-  "generated_at": "2026-09-01T18:16:00+09:00",
+  "generated_at": "2026-09-01T18:20:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "downsampling_reconvergence",
-    "description": "aggregation_repair_3344 is complete (6,373/6,373) -- now reconverging the downsampling pyramid so every zoom level reflects the repaired aggregation outputs",
-    "done": 8215,
-    "baseline_done": 8020,
-    "total_to_repair": 203,
-    "started_at": "2026-09-01T18:02:00+09:00"
+    "name": "bundle_rebuild",
+    "description": "bundle.py rebuilding japan-z8plus.pmtiles from the repaired pmtiles-store (no fine-grained item counter -- see build log for region-level progress)",
+    "started_at": "2026-09-01T18:16:00+09:00"
   },
   "resources": {
     "disk": [
