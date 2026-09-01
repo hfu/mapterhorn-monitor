@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T08:12:00+09:00",
+  "generated_at": "2026-09-02T08:26:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "1.5-go prep: lineage tiles done",
-    "description": "D106: 1-go publish rsync 9% (ETA ~4.9h). D107/D108: 1.5-go prep -- pmtiles-store layer separation (aggregation/downsampling x elevation/lineage) and the full lineage tile pipeline (EMIT_LINEAGE emission, majority-vote downsampling) implemented and verified with a real end-to-end integration test. Next: bundle.py/merge_japan_bundles.py datatype support, filename refactor, rehearsal-environment test, then ask Hidenori to approve a full-scale 1.5-go launch."
+    "name": "1.5-go prep: bundle/merge datatype support done",
+    "description": "1-go publish rsync 11% (ETA ~4.8h). D109: bundle.py/merge_japan_bundles.py now support both elevation and lineage datatypes with distinct filenames, and the with/without-overview naming ambiguity that caused D103 is resolved (z8plus intermediate vs. unambiguous final name). Next: generation_id human-readable label table, then a small rehearsal-environment test before asking Hidenori to approve a full-scale 1.5-go launch."
   },
   "resources": {
     "disk": [
