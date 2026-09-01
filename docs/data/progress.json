@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-01T20:46:00+09:00",
+  "generated_at": "2026-09-01T21:01:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
     "name": "downsampling_repair2",
     "description": "check_pmtiles_integrity.py found 1,818,530 orphaned tiles (86% of downsampling .done markers were stale, referencing deleted pmtiles-store files -- same bug class as D53/D69, larger scale). Stale markers cleared, rebuilding all 8,223 downsampling items. Publish to stars is on hold until this is clean.",
-    "done": 1144,
+    "done": 1162,
     "baseline_done": 1136,
     "total_to_repair": 7079,
     "started_at": "2026-09-01T20:47:00+09:00"
@@ -24,9 +24,9 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      4.95,
-      4.28,
-      3.12
+      5.02,
+      4.91,
+      4.3
     ]
   },
   "aggregation": {
