@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T06:28:00+09:00",
+  "generated_at": "2026-09-02T06:44:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "pmtiles_merge2",
-    "description": "pmtiles cluster completed cleanly (99.76% of original size, matching D100 precedent). Now running the final pmtiles merge with global-overview-backup.pmtiles (z0-7). Next: check_pmtiles_integrity.py (target: 0 orphaned tiles) -> D79 visual check -> publish to stars (with Hidenori go-ahead)."
+    "name": "integrity_check2",
+    "description": "Final pmtiles merge completed cleanly (220.65GB, z0-16). Running check_pmtiles_integrity.py -- this is the exact check that caught D100s 1.8M orphaned tiles last time, so this is the moment of truth for this rebuild cycle. Target: 0 orphaned tiles (or only the known/accepted D77 ocean-gap pattern). Next: D79 visual check -> publish to stars (with Hidenori go-ahead)."
   },
   "resources": {
     "disk": [
