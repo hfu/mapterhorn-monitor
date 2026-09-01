@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T05:58:00+09:00",
+  "generated_at": "2026-09-02T06:13:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "pmtiles_cluster2",
-    "description": "merge_japan_bundles.py completed cleanly (217.4GB, 1,777,785 tiles) with 0 errors -- the TMPDIR fix (D105) held. Now running pmtiles cluster on the merged archive (D81 precedent). Next: restore global-overview.pmtiles -> pmtiles merge -> check_pmtiles_integrity.py -> D79 visual check -> publish to stars (with Hidenori go-ahead)."
+    "name": "pmtiles_merge2",
+    "description": "pmtiles cluster completed cleanly (99.76% of original size, matching D100 precedent). Now running the final pmtiles merge with global-overview-backup.pmtiles (z0-7). Next: check_pmtiles_integrity.py (target: 0 orphaned tiles) -> D79 visual check -> publish to stars (with Hidenori go-ahead)."
   },
   "resources": {
     "disk": [
