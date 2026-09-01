@@ -1,28 +1,28 @@
 {
-  "generated_at": "2026-09-02T04:42:00+09:00",
+  "generated_at": "2026-09-02T04:58:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
     "name": "bundle_rebuild4",
-    "description": "D104: found the real root cause of the ENOSPC crashes -- the pmtiles library Writer buffers tile bytes in tempfile.TemporaryFile() on TMPDIR (boot disk, only ~100GB free), not on the output volume (962GB free), so 4 parallel workers exhausted the boot disk. Fixed by setting TMPDIR=/Volumes/pmtiles-store/tmp-store/writer-scratch/ (same fix D99 already used for merge_japan_bundles.py, just not previously applied to bundle.py). Restarted as bundle_rebuild4. Publish to stars remains on hold."
+    "description": "D104: bundle_rebuild4 running successfully with TMPDIR fixed (pmtiles library Writer was silently buffering to the boot disk instead of the output volume). bundle-store at 267GB and growing (D99 precedent: ~393GB total). Permanent fix applied to bundle.py/merge_japan_bundles.py so future runs (1.5-go/2-go) do not need the manual env var. Publish to stars remains on hold."
   },
   "resources": {
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 869,
+        "avail_gb": 703,
         "total_gb": 1800
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 1400,
+        "avail_gb": 1500,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      2.99,
-      2.61,
-      2.37
+      2.56,
+      2.57,
+      2.45
     ]
   },
   "aggregation": {
