@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T12:00:00+09:00",
+  "generated_at": "2026-09-02T12:46:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "1.5-go prep: real-data rehearsal passed",
-    "description": "1-go publish rsync 88% (ETA ~39min). D107-D110 (1.5-go prep) complete, tested, and pushed. Awaiting Hidenoris review before a full-scale 1.5-go launch decision."
+    "name": "1-go MISSION COMPLETE",
+    "description": "1-go (01M0MWK852631SHCHPA66F21WQ) fully published to stars: rsync completed (220.65GB, 5h17m49s), file size verified, public URL (stars.optgeo.org/mapterhorn-japan-bridge) confirmed serving tiles (HTTP 200). This closes out the D74-D76 incident recovery -> D100 crisis -> D101-D105 fixes -> D106-D111 publish arc. 1.5-go prep (D107-D110: layer separation, lineage tiles, naming refactor, real-data rehearsal) is implemented and tested, awaiting Hidenoris go-ahead for a full-scale launch."
   },
   "resources": {
     "disk": [
