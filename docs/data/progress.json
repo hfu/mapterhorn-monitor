@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T10:44:00+09:00",
+  "generated_at": "2026-09-02T11:30:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
     "name": "1.5-go prep: real-data rehearsal passed",
-    "description": "1-go publish rsync 64% (ETA ~2h). D107-D110 (1.5-go prep) complete, tested, and pushed. Awaiting Hidenoris review before a full-scale 1.5-go launch decision."
+    "description": "1-go publish rsync 78% (ETA ~1.2h). D107-D110 (1.5-go prep) complete, tested, and pushed. Awaiting Hidenoris review before a full-scale 1.5-go launch decision."
   },
   "resources": {
     "disk": [
@@ -20,9 +20,9 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.81,
-      2.08,
-      2.13
+      1.47,
+      1.76,
+      1.88
     ]
   },
   "aggregation": {
