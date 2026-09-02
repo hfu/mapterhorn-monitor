@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-02T08:36:00+09:00",
+  "generated_at": "2026-09-02T09:44:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
     "name": "1.5-go prep: real-data rehearsal passed",
-    "description": "1-go publish rsync 13% (ETA ~4.7h). D110: real-data rehearsal of the 1.5-go lineage pipeline succeeded -- aggregation_run.py with EMIT_LINEAGE=1 run against a real 1-go aggregation item (real GDAL reprojection, real GeoTIFF sources), producing correct elevation and lineage archives with a realistic 43.8%/56.2% jpnational10/jpnationalsea split. D107-D110 (layer separation, lineage pipeline, bundle/merge datatype support, naming refactor) all implemented, tested, and pushed. Remaining before launch: final summary and go-ahead from Hidenori."
+    "description": "1-go publish rsync 45% (ETA ~3h). D107-D110 (1.5-go prep: layer separation, lineage pipeline, bundle/merge datatype support, naming refactor, real-data rehearsal) all complete, tested, and pushed. Awaiting Hidenoris review before a full-scale 1.5-go launch decision."
   },
   "resources": {
     "disk": [
@@ -20,9 +20,9 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      2.05,
-      1.94,
-      1.95
+      1.96,
+      2.09,
+      2.15
     ]
   },
   "aggregation": {
