@@ -1,28 +1,28 @@
 {
-  "generated_at": "2026-09-02T14:21:00+09:00",
+  "generated_at": "2026-09-02T21:48:06+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "1-go MISSION COMPLETE",
-    "description": "1-go MISSION COMPLETE and published. D112: pre-launch disk capacity check for 1.5-go done -- freed 438GB of redundant local bundle-store copies of 1-go (already safely on stars), Migrate-2025-04 now has 871GB free (up from 559GB), pmtiles-store has 1.3TB free. 1.5-go implementation (D107-D110) and capacity check (D112) both complete. Awaiting Hidenoris go-ahead for a full-scale launch."
+    "name": "D113/D114: wall-artifact investigation -- repairing Tsushima/Goto z8-11 gap",
+    "description": "Published 1-go has coastline wall artifacts. D113/D114 (delegated to Opus and Fable for independent verification) found 3 distinct causes: (A) MapLibre renders missing raster-dem tiles as a -32768m abyss rather than sea level -- confirmed a real Tsushima/Goto z8-11 gap (west of exactly 129.375E) on top of the already-known z13+ gap; (B) a structural erosion-gate bug in aggregation_merge.py (present upstream in mapterhorn/mapterhorn too) that prevents its own blur from ever running on a zero-filled coastline boundary, producing the sub-tile jagged walls seen at Nagasaki peninsula/Etajima -- not yet fixed; (C) serving hygiene (mixed RGB/RGBA tile vintages, maxzoom over-advertised in TileJSON) -- not yet addressed. Currently repairing (A) for Tsushima/Goto: confirmed the underlying pmtiles data already exists locally (old flat pmtiles-store layout, pre-D107) so no regeneration is needed -- only a bundle/merge omission from the original 1-go publish run. Rebuilding bundle-store now via a temporary git-archaeology bundle.py (pre-D107 flat-glob version, does not touch the real D107-refactored bundle.py kept for 1.5-go) in screen session bundle_rebuild on slate. Republish to stars still needs a separate go-ahead from Hidenori once verified locally."
   },
   "resources": {
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 622,
+        "avail_gb": 962,
         "total_gb": 1800
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 1300,
+        "avail_gb": 1200,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.47,
-      1.76,
-      1.88
+      2.32,
+      2.34,
+      2.09
     ]
   },
   "aggregation": {
