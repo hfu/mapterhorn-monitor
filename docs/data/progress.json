@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-04T08:39:00+09:00",
+  "generated_at": "2026-09-04T08:54:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
-    "name": "D128: 1.5-go national aggregation IN PROGRESS -- 373/6373 done, screen agg15go, 5 workers, EMIT_LINEAGE=1",
+    "name": "D128: 1.5-go national aggregation IN PROGRESS -- 419/6373 done, screen agg15go, 5 workers, EMIT_LINEAGE=1",
     "description": "Hidenori approved the national-scale 1.5-go launch (D127, \"lift off\") after implementation (D124), independent grading (D125, verdict \"push it\"), and a documentation audit (D126) were all complete and pushed. Three final pre-flight items were done first: pmtiles cluster added to the runbook (matching 1-go's own D118 precedent), disk headroom monitoring extended to cover pmtiles-store as well as Migrate-2025-04, and the dashboard-update responsibility (this file, agent-driven not autonomous) was explicitly acknowledged. aggregation_covering.py generated the new generation's roster; a D123-style bidirectional cross-check against source-store came back completely clean (6,373 items, exact match with 1-go's own count, zero orphans/inconsistencies/duplicates). aggregation_run.py is running in screen session agg15go on slate, 5 workers, EMIT_LINEAGE=1 (both elevation and lineage tiles); the process itself only logs a startup banner (no per-item lines), so progress here is read directly from .done marker counts on disk. 25 minutes in, 130/6373 items done -- early rate, not yet a reliable ETA (D124's 50-70h estimate stands until the rate is confirmed over a longer window). 1-go's live archive remains stable, published, and untouched throughout (D122; empirically verified untouched during 1.5-go's rehearsal). After aggregation completes: downsampling (elevation + lineage) -> bundle -> pmtiles cluster -> pmtiles merge (z0-7 splice) -> verify -> Hidenori's separate publish approval."
   },
   "resources": {
@@ -14,22 +14,22 @@
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 962,
+        "avail_gb": 963,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      7.21,
       6.74,
-      6.82
+      6.44,
+      6.54
     ],
-    "note": "Load holding around 7 with the 5 aggregation workers active -- expected, stable since launch. check_disk_headroom.py now watches both volumes every 15min autonomously (independent of this dashboard) and logs to disk_headroom.log on slate; this dashboard itself is updated by the agent each monitoring tick, not autonomously."
+    "note": "Load holding around 6.5-7 with the 5 aggregation workers active -- expected, stable since launch. check_disk_headroom.py now watches both volumes every 15min autonomously (independent of this dashboard) and logs to disk_headroom.log on slate; this dashboard itself is updated by the agent each monitoring tick, not autonomously."
   },
   "aggregation": {
-    "done": 373,
+    "done": 419,
     "total": 6373,
-    "note": "1.5-go's own fresh count, launched 07:23 JST. 373/6373 done as of ~08:39 JST (1h16m in). Per-interval rate dropped to ~2.6 items/min this tick (was ~5.5-6/min in the first hour) -- likely larger/slower tiles in this batch (item cost varies with source data density), not yet treated as an anomaly; watching the next few ticks to see if it's a trend. 1-go's own aggregation (a separate, completed generation, 01M0MWK852631SHCHPA66F21WQ) remains 6373/6373 done and unaffected."
+    "note": "1.5-go's own fresh count, launched 07:23 JST. 419/6373 done as of ~08:54 JST (1h31m in, overall average ~4.6 items/min -- rough ETA ~23h if this holds, well inside the 50-70h estimate). Per-interval rate recovered to ~3.1 items/min this tick after the ~2.6/min dip; reads as normal variance by item cost, not an anomaly. 1-go's own aggregation (a separate, completed generation, 01M0MWK852631SHCHPA66F21WQ) remains 6373/6373 done and unaffected."
   },
   "downsampling": {
     "done": 0,
