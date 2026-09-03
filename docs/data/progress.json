@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-09-04T06:40:00+09:00",
+  "generated_at": "2026-09-04T06:54:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "D123: 1.5-go prerequisite implementation + rehearsal in progress (unattended window, Hidenori away ~10h)",
-    "description": "1-go's live archive is stable and published (D122) -- no action needed there. A proposed shortcut (dubbed \"1.4-go\": patch 1-go's existing generation in place with the D116 merge-bug fix, national scale) was aborted BEFORE launch when a comparison analysis found it would trigger a D76-class collision (aggregation_tile.py's cleanup glob could delete up to 3,344 legitimate downsampling files under the old flat layout). The .done/.todo staging already prepared for that launch was fully reverted -- 1-go's 6,373 aggregation items are confirmed back to .done, untouched. Decision: use the current unattended window to properly prepare and rehearse the fuller \"1.5-go\" arrangement instead (new generation_id, namespace separation + lineage + filename cleanup, one national run covers everything needed before 2-go) -- the actual national-scale launch itself is deliberately deferred to Hidenori's return and explicit approval, not attempted during this window. Currently in progress, two agents working in parallel against slate: one implementing the 1.5-go prerequisites (done/todo manifest datatype-scoping, a generation_id path layer, TMPDIR/run_command hardening) and running a real chained rehearsal in an isolated pipelines-rehearsal/ environment; a second independently deriving a pre-launch safety checklist from this project's own incident history, so the real implementation gets graded against independently-derived criteria rather than its own self-report. This progress.json is being refreshed roughly every 15 minutes during the window specifically so resource load can be checked remotely."
+    "name": "D123/D124: 1.5-go implementation + chained rehearsal complete (unpushed); independent grading + doc audit in progress",
+    "description": "1-go's live archive remains stable and published (D122). The 1.4-go shortcut was aborted before launch (D123: would have collided with 1-go's data, D76-class risk). The fuller 1.5-go arrangement (new generation_id 01M1MKD73P0KDT719H21NJV9VR, namespace separation with a generation_id path layer, datatype-scoped .done markers with content-hash freshness tracking, lineage wiring, TMPDIR/run_command hardening) has been implemented and validated via a real chained 2-item rehearsal in an isolated environment -- both datatypes, correct sibling-tile merging, elevation byte-identical to 1-go where expected, freshness invalidation proven live. All of this is committed LOCALLY on slate only -- nothing pushed yet, and the national-scale launch itself was deliberately NOT started, reserved for Hidenori's own return and explicit approval. Currently in progress: an independent (different-instance) grading pass checking the real implementation diff against a pre-derived safety checklist rather than trusting either agent's self-report, plus a separate documentation-staleness audit. This progress.json refreshes roughly every 15 minutes during the window so resource load can be checked remotely."
   },
   "resources": {
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 675,
+        "avail_gb": 967,
         "total_gb": 1800
       },
       {
@@ -20,11 +20,11 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      3.83,
-      3.41,
-      2.81
+      3.63,
+      3.46,
+      3.42
     ],
-    "note": "Load rising from the ~1.5-2.5 overnight baseline as two background agents (Fable implementing+rehearsing, Opus drafting an independent checklist) work concurrently against slate. Watched every ~15min during Hidenori's absence specifically for this reason."
+    "note": "Load holding around 3.4-3.8 (vs ~1.5-2.5 overnight baseline) with 2 background agents working concurrently against slate (independent grading + doc audit). Migrate-2025-04 freed ~290GB around 06:54 -- reclaimed space from the earlier bundle-store duplicate deletion, apparently delayed by APFS/df caching rather than a new leak. Watched every ~15min during Hidenori's absence."
   },
   "aggregation": {
     "done": 6373,
