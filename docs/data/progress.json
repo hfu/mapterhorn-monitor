@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-04T03:00:00+09:00",
+  "generated_at": "2026-09-04T06:40:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "D122: Republish complete -- western Japan z13+ and Tsushima/Goto z8-11 gaps confirmed resolved live",
-    "description": "The full repair-and-republish cycle (D115-D122) is done. Root causes fixed: (1) Tsushima/Goto z8-11 gap -- two missing ocean-only aggregation outputs were blocking a chained downsampling work item (D115). (2) A coastal boundary-blur bug in aggregation_merge.py that could ship hard elevation cliffs at block seams (D116). (3) The published archive was silently missing ALL z13+ tiles across western Japan (Kyushu, Okinawa, Shikoku, Chugoku) since a 2026-09-02 ENOSPC-interrupted merge silently republished with only 14 of 23 regional bundles (D117) -- a merge-completeness gate was added to prevent recurrence. Rebuilt the full archive (bundle -> merge -> cluster -> z0-7 overview splice), verified locally (Fable, D118), then published to stars via LAN rsync (D122) -- live spot-checks of the previously-broken coordinates now return correct data matching the local verification exactly. Remaining known-but-non-blocking items (all carried into the 1.5-go plan): 949/8223 downsampling items are stale relative to their inputs (D119, invisible in rendering), and stars' 100Mbps network link (unexplained, should be gigabit) made the ~314GB republish take ~7h48m."
+    "name": "D123: 1.5-go prerequisite implementation + rehearsal in progress (unattended window, Hidenori away ~10h)",
+    "description": "1-go's live archive is stable and published (D122) -- no action needed there. A proposed shortcut (dubbed \"1.4-go\": patch 1-go's existing generation in place with the D116 merge-bug fix, national scale) was aborted BEFORE launch when a comparison analysis found it would trigger a D76-class collision (aggregation_tile.py's cleanup glob could delete up to 3,344 legitimate downsampling files under the old flat layout). The .done/.todo staging already prepared for that launch was fully reverted -- 1-go's 6,373 aggregation items are confirmed back to .done, untouched. Decision: use the current unattended window to properly prepare and rehearse the fuller \"1.5-go\" arrangement instead (new generation_id, namespace separation + lineage + filename cleanup, one national run covers everything needed before 2-go) -- the actual national-scale launch itself is deliberately deferred to Hidenori's return and explicit approval, not attempted during this window. Currently in progress, two agents working in parallel against slate: one implementing the 1.5-go prerequisites (done/todo manifest datatype-scoping, a generation_id path layer, TMPDIR/run_command hardening) and running a real chained rehearsal in an isolated pipelines-rehearsal/ environment; a second independently deriving a pre-launch safety checklist from this project's own incident history, so the real implementation gets graded against independently-derived criteria rather than its own self-report. This progress.json is being refreshed roughly every 15 minutes during the window specifically so resource load can be checked remotely."
   },
   "resources": {
     "disk": [
@@ -20,10 +20,11 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.54,
-      1.76,
-      2.06
-    ]
+      3.83,
+      3.41,
+      2.81
+    ],
+    "note": "Load rising from the ~1.5-2.5 overnight baseline as two background agents (Fable implementing+rehearsing, Opus drafting an independent checklist) work concurrently against slate. Watched every ~15min during Hidenori's absence specifically for this reason."
   },
   "aggregation": {
     "done": 6373,
