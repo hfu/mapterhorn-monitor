@@ -1,28 +1,28 @@
 {
-  "generated_at": "2026-09-03T07:00:05+09:00",
+  "generated_at": "2026-09-04T03:00:00+09:00",
   "generation_id": "01M0MWK852631SHCHPA66F21WQ",
   "current_stage": {
-    "name": "D115: Tsushima/Goto z8-11 gap genuinely fixed -- rebuilding final archive",
-    "description": "Root cause found (D115): downsampling_covering.py combines the whole Tsushima/Goto region into one z6-level chained work item (6-54-25-{8..11}-downsampling.csv), which was blocked the entire time by 2 missing ocean-only aggregation outputs (7-108-50-12, 7-108-51-12 -- East China Sea, jpnationalsea-only, stale .done markers with no actual file) causing DOWNSAMPLING_STRICT to skip the whole chain every run. Regenerated those 2 items, reran downsampling -- national backlog is now genuinely 0/8223 incomplete. Verified real elevation data (std 22-122m, up to 886m) now decodes at all previously-missing z8-11 coordinates -- confirmed fixed, not just re-bundled. Also found and fixed (this session): get_pmtiles_folder() needed a temporary fallback to the pre-D107 flat layout, since 1-go production data predates the 1.5-go layer-namespace split (marked remove-before-flight for 1.5-go). Now rebuilding bundle+merge+cluster+overview-splice for real, then local verification, then republish approval."
+    "name": "D122: Republish complete -- western Japan z13+ and Tsushima/Goto z8-11 gaps confirmed resolved live",
+    "description": "The full repair-and-republish cycle (D115-D122) is done. Root causes fixed: (1) Tsushima/Goto z8-11 gap -- two missing ocean-only aggregation outputs were blocking a chained downsampling work item (D115). (2) A coastal boundary-blur bug in aggregation_merge.py that could ship hard elevation cliffs at block seams (D116). (3) The published archive was silently missing ALL z13+ tiles across western Japan (Kyushu, Okinawa, Shikoku, Chugoku) since a 2026-09-02 ENOSPC-interrupted merge silently republished with only 14 of 23 regional bundles (D117) -- a merge-completeness gate was added to prevent recurrence. Rebuilt the full archive (bundle -> merge -> cluster -> z0-7 overview splice), verified locally (Fable, D118), then published to stars via LAN rsync (D122) -- live spot-checks of the previously-broken coordinates now return correct data matching the local verification exactly. Remaining known-but-non-blocking items (all carried into the 1.5-go plan): 949/8223 downsampling items are stale relative to their inputs (D119, invisible in rendering), and stars' 100Mbps network link (unexplained, should be gigabit) made the ~314GB republish take ~7h48m."
   },
   "resources": {
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 386,
+        "avail_gb": 675,
         "total_gb": 1800
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 1300,
+        "avail_gb": 994,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      2.32,
-      2.34,
-      2.09
+      1.54,
+      1.76,
+      2.06
     ]
   },
   "aggregation": {
@@ -31,10 +31,11 @@
     "note": "6373/6373 at the time of the D76 damage was wrong (the pre-repair total). This field always reflects aggregation_repair_3344's own .done count (including the 3029 baseline)."
   },
   "downsampling": {
-    "done": 8219,
+    "done": 8223,
     "ready_not_run": 0,
-    "not_ready": 4,
-    "total": 8223
+    "not_ready": 0,
+    "total": 8223,
+    "note": "0 incomplete as of D115. Separately, 949/8223 done items are stale relative to their inputs (D119) -- invisible in raster-dem rendering, a design gap in .done marker freshness carried into the 1.5-go plan, not a completion problem."
   },
   "global_overview": {
     "tiles": 13524,
