@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-04T07:30:00+09:00",
-  "generation_id": "01M0MWK852631SHCHPA66F21WQ",
+  "generated_at": "2026-09-04T07:26:00+09:00",
+  "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
-    "name": "D124-D126: 1.5-go hardening implemented, independently graded (\"push it\"), pushed; docs audited and fixed. Awaiting Hidenori's national-launch go.",
-    "description": "1-go's live archive remains stable and published (D122). The 1.4-go shortcut was aborted before launch (D123). The fuller 1.5-go arrangement (new generation_id 01M1MKD73P0KDT719H21NJV9VR: namespace separation with a generation_id path layer, datatype-scoped .done markers with content-hash freshness tracking, lineage wiring, TMPDIR/run_command hardening) was implemented and proven via a real chained rehearsal (D124), then independently graded by a different reviewer against a pre-derived safety checklist rather than trusting self-reports (D125: verdict \"push it\", one blocker found -- downsampling_run.py missing a TMPDIR override -- fixed immediately, plus 3 small cleanup/runbook items). All work is now pushed to origin/main in both repos. A parallel documentation-staleness audit (D126) found and fixed several places docs would have actively misled a new session (publish_cycle.py's hard-disable was undocumented; the launch runbook's own env vars were missing from the reference table), and added START_HERE.md as a new onboarding entry point. The national-scale run itself (~50-70h) remains deliberately unstarted, reserved for Hidenori's own return and explicit approval. This progress.json refreshes roughly every 15 minutes during the window so resource load can be checked remotely."
+    "name": "D128: 1.5-go national aggregation LAUNCHED -- lift off 07:23 JST, screen agg15go, 5 workers, EMIT_LINEAGE=1",
+    "description": "Hidenori approved the national-scale 1.5-go launch (D127, \"lift off\") after implementation (D124), independent grading (D125, verdict \"push it\"), and a documentation audit (D126) were all complete and pushed. Three final pre-flight items were done first: pmtiles cluster added to the runbook (matching 1-go's own D118 precedent), disk headroom monitoring extended to cover pmtiles-store as well as Migrate-2025-04, and the dashboard-update responsibility (this file, agent-driven not autonomous) was explicitly acknowledged. aggregation_covering.py generated the new generation's roster; a D123-style bidirectional cross-check against source-store came back completely clean (6,373 items, exact match with 1-go's own count, zero orphans/inconsistencies/duplicates). aggregation_run.py is now running in screen session agg15go on slate, 5 workers, EMIT_LINEAGE=1 (both elevation and lineage tiles). Estimated 50-70 hours for this aggregation phase alone, based on 1-go's own real timing history. 1-go's live archive remains stable, published, and untouched throughout (D122; empirically verified untouched during 1.5-go's rehearsal). After aggregation completes: downsampling (elevation + lineage) -> bundle -> pmtiles cluster -> pmtiles merge (z0-7 splice) -> verify -> Hidenori's separate publish approval."
   },
   "resources": {
     "disk": [
@@ -14,34 +14,35 @@
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 994,
+        "avail_gb": 991,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      3.56,
-      3.60,
-      3.49
+      6.91,
+      4.55,
+      3.88
     ],
-    "note": "Load holding around 3.4-3.8 (vs ~1.5-2.5 overnight baseline); background agent activity has been continuous but sequential/light since the grading and doc-audit passes completed. Watched every ~15min during Hidenori's absence."
+    "note": "Load jumped from ~3.5 to ~7 as the 5 aggregation workers spun up -- expected. check_disk_headroom.py now watches both volumes every 15min autonomously (independent of this dashboard) and logs to disk_headroom.log on slate; this dashboard itself is updated by the agent each monitoring tick, not autonomously."
   },
   "aggregation": {
-    "done": 6373,
+    "done": 0,
     "total": 6373,
-    "note": "6373/6373 at the time of the D76 damage was wrong (the pre-repair total). This field always reflects aggregation_repair_3344's own .done count (including the 3029 baseline)."
+    "note": "1.5-go's own fresh count, just launched (07:23 JST) -- 0/6373 done is expected at this stage, not a problem. 1-go's own aggregation (a separate, completed generation, 01M0MWK852631SHCHPA66F21WQ) remains 6373/6373 done and unaffected."
   },
   "downsampling": {
-    "done": 8223,
+    "done": 0,
     "ready_not_run": 0,
-    "not_ready": 0,
+    "not_ready": 6373,
     "total": 8223,
-    "note": "0 incomplete as of D115. Separately, 949/8223 done items are stale relative to their inputs (D119) -- invisible in raster-dem rendering, a design gap in .done marker freshness carried into the 1.5-go plan, not a completion problem."
+    "note": "1.5-go's downsampling has not started -- waits for aggregation to finish. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
   },
   "global_overview": {
     "tiles": 13524,
     "max_missing_at_z7": 8321,
-    "verified": true
+    "verified": true,
+    "note": "This reflects 1-go's published archive, still live on stars. 1.5-go has not reached this stage yet."
   },
   "pipeline_zoom_split": {
     "own_min_zoom": 8,
