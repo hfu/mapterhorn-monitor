@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-04T20:26:00+09:00",
+  "generated_at": "2026-09-04T20:41:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
-    "name": "D129: post-recovery, stable -- 3083/6373 done, screen agg15go with 3 workers",
+    "name": "D129: post-recovery, stable -- 3127/6373 done, screen agg15go with 3 workers (Hidenori approved)",
     "description": "Hidenori approved the national-scale 1.5-go launch (D127, \"lift off\") after implementation (D124), independent grading (D125, verdict \"push it\"), and a documentation audit (D126) were all complete and pushed. Three final pre-flight items were done first: pmtiles cluster added to the runbook (matching 1-go's own D118 precedent), disk headroom monitoring extended to cover pmtiles-store as well as Migrate-2025-04, and the dashboard-update responsibility (this file, agent-driven not autonomous) was explicitly acknowledged. aggregation_covering.py generated the new generation's roster; a D123-style bidirectional cross-check against source-store came back completely clean (6,373 items, exact match with 1-go's own count, zero orphans/inconsistencies/duplicates). aggregation_run.py is running in screen session agg15go on slate, 5 workers, EMIT_LINEAGE=1 (both elevation and lineage tiles); the process itself only logs a startup banner (no per-item lines), so progress here is read directly from .done marker counts on disk. 25 minutes in, 130/6373 items done -- early rate, not yet a reliable ETA (D124's 50-70h estimate stands until the rate is confirmed over a longer window). 1-go's live archive remains stable, published, and untouched throughout (D122; empirically verified untouched during 1.5-go's rehearsal). After aggregation completes: downsampling (elevation + lineage) -> bundle -> pmtiles cluster -> pmtiles merge (z0-7 splice) -> verify -> Hidenori's separate publish approval."
   },
   "resources": {
@@ -14,22 +14,22 @@
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 866,
+        "avail_gb": 869,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      3.76,
-      4.12,
-      3.65
+      4.11,
+      4.41,
+      4.20
     ],
-    "note": "Second clean tick post-recovery (see D129 in DECISIONS.md for the full kernel-panic incident writeup) -- memory pressure steady at level 1, load settled around 3.7-4.1 with 3 workers (down from the pre-crash 6.5-7.5 with 5), no repeat of the pressure spikes. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
+    "note": "Third clean tick post-recovery -- memory pressure steady at level 1, load steady around 4.1-4.4 with 3 workers. Hidenori has approved the reduction to 3 workers after the fact and is open to raising it back to 4 later once the pace at 3 is confirmed stable. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
   },
   "aggregation": {
-    "done": 3083,
+    "done": 3127,
     "total": 6373,
-    "note": "1.5-go's own fresh count, launched 07:23 JST, briefly interrupted by the D129 kernel panic at 19:54 and restarted ~20:03 with 3 workers (down from 5). 3083/6373 done (48.4%) as of ~20:26 JST. Post-restart pace running ~2.9-3/min with 3 workers -- slower than the 5-worker pace but the point of the reduction was memory-pressure safety, not throughput; watching to confirm this settles into a sustainable rate. 1-go's own aggregation (a separate, completed generation, 01M0MWK852631SHCHPA66F21WQ) remains 6373/6373 done and unaffected."
+    "note": "1.5-go's own fresh count, launched 07:23 JST, briefly interrupted by the D129 kernel panic at 19:54 and restarted ~20:03 with 3 workers (down from 5, Hidenori-approved). 3127/6373 done (49.1%) as of ~20:41 JST. Post-restart pace holding steady at ~2.9-3/min across two consecutive ticks -- looks like the new sustainable rate at 3 workers. 1-go's own aggregation (a separate, completed generation, 01M0MWK852631SHCHPA66F21WQ) remains 6373/6373 done and unaffected."
   },
   "downsampling": {
     "done": 0,
