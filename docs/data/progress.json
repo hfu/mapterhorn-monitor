@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-04T20:12:00+09:00",
+  "generated_at": "2026-09-04T20:26:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
-    "name": "D129: RECOVERED from kernel panic -- 3040/6373 done, screen agg15go RESTARTED with 3 workers (down from 5)",
+    "name": "D129: post-recovery, stable -- 3083/6373 done, screen agg15go with 3 workers",
     "description": "Hidenori approved the national-scale 1.5-go launch (D127, \"lift off\") after implementation (D124), independent grading (D125, verdict \"push it\"), and a documentation audit (D126) were all complete and pushed. Three final pre-flight items were done first: pmtiles cluster added to the runbook (matching 1-go's own D118 precedent), disk headroom monitoring extended to cover pmtiles-store as well as Migrate-2025-04, and the dashboard-update responsibility (this file, agent-driven not autonomous) was explicitly acknowledged. aggregation_covering.py generated the new generation's roster; a D123-style bidirectional cross-check against source-store came back completely clean (6,373 items, exact match with 1-go's own count, zero orphans/inconsistencies/duplicates). aggregation_run.py is running in screen session agg15go on slate, 5 workers, EMIT_LINEAGE=1 (both elevation and lineage tiles); the process itself only logs a startup banner (no per-item lines), so progress here is read directly from .done marker counts on disk. 25 minutes in, 130/6373 items done -- early rate, not yet a reliable ETA (D124's 50-70h estimate stands until the rate is confirmed over a longer window). 1-go's live archive remains stable, published, and untouched throughout (D122; empirically verified untouched during 1.5-go's rehearsal). After aggregation completes: downsampling (elevation + lineage) -> bundle -> pmtiles cluster -> pmtiles merge (z0-7 splice) -> verify -> Hidenori's separate publish approval."
   },
   "resources": {
@@ -14,22 +14,22 @@
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 869,
+        "avail_gb": 866,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      4.40,
-      3.86,
-      2.58
+      3.76,
+      4.12,
+      3.65
     ],
-    "note": "D129 INCIDENT AND RECOVERY (19:54 JST): slate suffered a kernel panic -- 'watchdog timeout: no checkins from watchdogd in 91 seconds', caused by the memory compressor hitting 100% of its segment limit. This retroactively explains the repeated momentary level-4 memory-pressure spikes logged through the day (07:00-19:41): each one self-cleared and was treated as benign at the time, but the underlying pressure was actually building over ~12.5h until the compressor's structural limit was hit. Root cause: aggregation_run.py's default worker count (5, set by D84 on 2026-09-01) was tuned for CPU idle time only, not per-worker memory spikes -- one worker was observed hitting ~7.7GB RSS on a dense tile earlier in the run, and slate has 16GB total RAM, so multiple workers landing on large tiles concurrently could exhaust it. Recovery: verified no data loss (roster CSVs still 6373, .done markers intact at 2982 right where the crash interrupted it, the 5 in-flight items' scratch dirs are safely reusable by aggregation_run.py's own exist_ok=True design), remounted both volumes, restarted disk_headroom monitoring, and restarted agg15go with AGGREGATION_WORKERS=3 (down from 5) as a memory-pressure safety margin -- no pipeline code changed, env-var-only. Confirmed healthy: load down from 6.5-7.5 to ~4, 3 workers alive and CPU-busy, .done climbing again (2982->3040 in ~18min post-restart). Full writeup in DECISIONS.md D129. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
+    "note": "Second clean tick post-recovery (see D129 in DECISIONS.md for the full kernel-panic incident writeup) -- memory pressure steady at level 1, load settled around 3.7-4.1 with 3 workers (down from the pre-crash 6.5-7.5 with 5), no repeat of the pressure spikes. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
   },
   "aggregation": {
-    "done": 3040,
+    "done": 3083,
     "total": 6373,
-    "note": "1.5-go's own fresh count, launched 07:23 JST, briefly interrupted by the D129 kernel panic at 19:54 and restarted ~20:03 with 3 workers. 3040/6373 done (47.7%) as of ~20:12 JST. Pace with 3 workers is being watched fresh from this restart; overall progress including the pre-crash period still averages roughly in line with the original 50-70h estimate. 1-go's own aggregation (a separate, completed generation, 01M0MWK852631SHCHPA66F21WQ) remains 6373/6373 done and unaffected."
+    "note": "1.5-go's own fresh count, launched 07:23 JST, briefly interrupted by the D129 kernel panic at 19:54 and restarted ~20:03 with 3 workers (down from 5). 3083/6373 done (48.4%) as of ~20:26 JST. Post-restart pace running ~2.9-3/min with 3 workers -- slower than the 5-worker pace but the point of the reduction was memory-pressure safety, not throughput; watching to confirm this settles into a sustainable rate. 1-go's own aggregation (a separate, completed generation, 01M0MWK852631SHCHPA66F21WQ) remains 6373/6373 done and unaffected."
   },
   "downsampling": {
     "done": 0,
