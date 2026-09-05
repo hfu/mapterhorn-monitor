@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-06T02:53:00+09:00",
+  "generated_at": "2026-09-06T03:08:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
-    "name": "1.5-go pmtiles merge (z0-7 overview splice) running -- cluster+verify complete",
+    "name": "1.5-go pipeline complete -- both archives verified, awaiting publish approval",
     "started_at": "2026-09-05T15:10:00+09:00",
     "description": "1-go's live archive remains stable, published, and untouched throughout. D128-D131: national aggregation launched 07:23 JST 9/4, survived a D129 kernel panic (5-worker memory exhaustion), recovered on 3 workers (fixed permanently for 1.5-go and 2-go by D131), and completed cleanly (D132) ~15:05 JST 9/5 -- roster/.done both 6,373, zero .todo, zero leftover scratch, no repeat crash. downsampling_covering.py ran clean; downsampling_run.py (elevation, screen ds15go_elev, DOWNSAMPLING_STRICT=1) launched and confirmed incrementing. Lineage-datatype downsampling follows once elevation completes. After both: bundle -> pmtiles cluster -> pmtiles merge (z0-7 splice) -> verify -> Hidenori's separate publish approval. Full narrative in DECISIONS.md D122-D132."
   },
@@ -10,7 +10,7 @@
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 412,
+        "avail_gb": 384,
         "total_gb": 1800
       },
       {
@@ -21,9 +21,9 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.17,
-      1.37,
-      1.40
+      1.22,
+      1.31,
+      1.35
     ],
     "note": "Aggregation phase complete, downsampling (elevation) now running. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
   },
@@ -37,7 +37,7 @@
     "ready_not_run": 0,
     "not_ready": 0,
     "total": 8223,
-    "note": "D140: pmtiles cluster (elevation) completed cleanly and verify passed. ./pmtiles merge (z0-7 overview splice, screen mergesplice15go) is 91% through 293GB, ~4min remaining -- will produce the final bundle-store/mapterhorn-japan-bridge.pmtiles. Migrate-2025-04 headroom is thinning (412GB free) as the archive grows but remains comfortable. Lineage stays a separate final file needing only its own verify. Then Hidenori's publish approval. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
+    "note": "D141: 1.5-go's full pipeline is complete. mapterhorn-japan-bridge.pmtiles (elevation, 314.66GB, zoom 0-16, global bounds, center correctly set, clustered) and mapterhorn-japan-bridge-lineage.pmtiles (lineage, 204.6MB, zoom 8-16, Japan bounds) both passed final pmtiles verify with no errors. Every stage from aggregation through the z0-7 overview splice is done for generation 01M1MKD73P0KDT719H21NJV9VR. The only remaining step is Hidenori's explicit publish approval before a manual rsync to stars -- nothing is being published yet. 1-go's own live archive remains stable, published, and untouched throughout."
   },
   "global_overview": {
     "tiles": 13524,
