@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T06:53:00+09:00",
+  "generated_at": "2026-09-06T07:23:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
     "name": "Publishing to stars (D122-style) -- live site down during transfer, ~7.5h ETA",
@@ -37,7 +37,7 @@
     "ready_not_run": 0,
     "not_ready": 0,
     "total": 8223,
-    "note": "D142: Hidenori approved publish; old 1-go live file deleted first (~8h downtime confirmed with Hidenori), elevation archive transfer to stars is 3% through at a steady ~11MB/s (~7h19m remaining). Sent stars-cd a note about the recurring disk-headroom squeeze (Hidenori's suggestion: move rarely-used large pmtiles files to Source Cooperative) so this doesn't repeat for 2-go. Once transfer completes: lineage transfer, pmtiles verify (both, on stars), atomic rename (both), martin restart -- all scripted to proceed unattended in screen publish15go."
+    "note": "D142: publishing to stars, elevation transfer 10% through at a steady ~11MB/s (~6h45m remaining). D143: extended pmtiles cluster to the lineage archive too (Hidenori's suggestion) -- found ~83.5% tile-content duplication (vs elevation's ~19%), consistent with lineage's categorical data producing large identical-content regions; cost was 3.4s, no downside, so lineage is now clustered as well and will be picked up automatically when the transfer reaches it. Sent stars-cd a note about the recurring disk-headroom squeeze (Hidenori's suggestion: move rarely-used large pmtiles files to Source Cooperative) so this doesn't repeat for 2-go."
   },
   "global_overview": {
     "tiles": 13524,
