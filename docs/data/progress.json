@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-05T23:52:00+09:00",
+  "generated_at": "2026-09-06T00:08:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
-    "name": "1.5-go bundle.py (lineage) running -- elevation bundle complete",
+    "name": "1.5-go merge_japan_bundles.py (elevation) running -- both bundle datatypes complete",
     "started_at": "2026-09-05T15:10:00+09:00",
     "description": "1-go's live archive remains stable, published, and untouched throughout. D128-D131: national aggregation launched 07:23 JST 9/4, survived a D129 kernel panic (5-worker memory exhaustion), recovered on 3 workers (fixed permanently for 1.5-go and 2-go by D131), and completed cleanly (D132) ~15:05 JST 9/5 -- roster/.done both 6,373, zero .todo, zero leftover scratch, no repeat crash. downsampling_covering.py ran clean; downsampling_run.py (elevation, screen ds15go_elev, DOWNSAMPLING_STRICT=1) launched and confirmed incrementing. Lineage-datatype downsampling follows once elevation completes. After both: bundle -> pmtiles cluster -> pmtiles merge (z0-7 splice) -> verify -> Hidenori's separate publish approval. Full narrative in DECISIONS.md D122-D132."
   },
@@ -10,20 +10,20 @@
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 677,
+        "avail_gb": 679,
         "total_gb": 1800
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 703,
+        "avail_gb": 691,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.84,
-      1.67,
-      1.66
+      1.53,
+      1.44,
+      1.49
     ],
     "note": "Aggregation phase complete, downsampling (elevation) now running. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
   },
@@ -37,7 +37,7 @@
     "ready_not_run": 0,
     "not_ready": 0,
     "total": 8223,
-    "note": "D136: bundle.py (elevation) completed cleanly after ~1h -- 23 files created (planet.pmtiles + 22 regional z6 bundles), no errors, pmtiles-store headroom recovering as expected. bundle.py (lineage, BUNDLE_DATATYPE=lineage) steadily producing regional -lineage.pmtiles bundles, disk and memory stable. Next: merge_japan_bundles.py (both datatypes) -> pmtiles cluster -> verify -> pmtiles merge (z0-7 splice) -> verify -> Hidenori's publish approval. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
+    "note": "Both bundle.py runs (elevation and lineage) completed cleanly -- 23 files each (planet[.-lineage].pmtiles + 22 regional z6 bundles), no errors. merge_japan_bundles.py (elevation) now running in screen merge15go_elev, currently in its completeness-check phase (D119's protection against the 9/2 ENOSPC-style partial-merge incident) -- this step (D49) has historically been the riskiest for disk exhaustion, watching headroom closely. Lineage merge follows once elevation completes. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
   },
   "global_overview": {
     "tiles": 13524,
