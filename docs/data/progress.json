@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-06T03:23:00+09:00",
+  "generated_at": "2026-09-06T06:40:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
-    "name": "1.5-go pipeline complete -- both archives verified, awaiting publish approval",
+    "name": "Publishing to stars (D122-style) -- live site down during transfer, ~7.5h ETA",
     "started_at": "2026-09-05T15:10:00+09:00",
     "description": "1-go's live archive remains stable, published, and untouched throughout. D128-D131: national aggregation launched 07:23 JST 9/4, survived a D129 kernel panic (5-worker memory exhaustion), recovered on 3 workers (fixed permanently for 1.5-go and 2-go by D131), and completed cleanly (D132) ~15:05 JST 9/5 -- roster/.done both 6,373, zero .todo, zero leftover scratch, no repeat crash. downsampling_covering.py ran clean; downsampling_run.py (elevation, screen ds15go_elev, DOWNSAMPLING_STRICT=1) launched and confirmed incrementing. Lineage-datatype downsampling follows once elevation completes. After both: bundle -> pmtiles cluster -> pmtiles merge (z0-7 splice) -> verify -> Hidenori's separate publish approval. Full narrative in DECISIONS.md D122-D132."
   },
@@ -37,7 +37,7 @@
     "ready_not_run": 0,
     "not_ready": 0,
     "total": 8223,
-    "note": "D141: 1.5-go's full pipeline is complete and idle -- confirmed no aggregation/downsampling/bundle/merge/pmtiles processes running. Cleaned up 8 leftover idle screen sessions from completed stages (kept disk_headroom running). mapterhorn-japan-bridge.pmtiles (elevation, 314.66GB) and mapterhorn-japan-bridge-lineage.pmtiles (lineage, 204.6MB) both verified clean. Quietly waiting on Hidenori's explicit publish approval before any rsync to stars -- nothing published yet. 1-go's own live archive remains stable, published, and untouched throughout."
+    "note": "D142: Hidenori approved publish. stars had only 150GB free (not enough for old+new simultaneously), so per D122's precedent the old 1-go live file was deleted first (confirmed with Hidenori specifically, given the ~8h downtime this implies) and the new elevation+lineage archives are being rsync'd in (screen publish15go on slate, ~11MB/s, ~7.5h ETA -- matches D122's historical 100Mbps bottleneck on stars' NIC). The live site is down until the transfer, verify, and atomic rename complete. Once done: pmtiles verify on stars, atomic rename into place, martin restart -- all scripted to proceed unattended."
   },
   "global_overview": {
     "tiles": 13524,
