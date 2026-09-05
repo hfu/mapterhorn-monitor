@@ -162,8 +162,23 @@
     </svg>`;
   }
 
+  // buildActivities() reads current_stage.baseline_done/total_to_repair,
+  // fields specific to 1-go's D74-D76 repair cycle -- 1.5-go's progress.json
+  // populates aggregation.done/total instead, so this would render against
+  // undefined values rather than real ones. Flip to true once PLANNED_STEPS
+  // and buildActivities are rewritten for the actual 1.5-go runbook.
+  const ACTIVE = false;
+
   async function render(container) {
     container.innerHTML = '';
+
+    if (!ACTIVE) {
+      MJBMON.renderInactiveNotice(
+        container,
+        '1号のD74-D76修復サイクル専用に作られたガントチャートで、1.5号のprogress.jsonスキーマ(aggregation.done/total)には未対応です。'
+      );
+      return undefined;
+    }
 
     let progress;
     try {

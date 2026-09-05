@@ -45,6 +45,25 @@ body {
   color: #95a8be;
 }
 
+/* Shown by MJBMON.renderInactiveNotice() in place of an instrument's real
+   render when its data source has stopped being fed (2026-09-05, per
+   Hidenori: keep the instrument registered rather than archive it, but be
+   honest on-screen that it isn't live right now). */
+.mjbmon-inactive-notice {
+  border: 1px dashed #e4c74a;
+  border-radius: 4px;
+  padding: 12px 14px;
+  color: #e4c74a;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.mjbmon-inactive-notice strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
 /* current-stage.js */
 
 .mjbmon-stage-name {

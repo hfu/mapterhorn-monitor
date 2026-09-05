@@ -45,8 +45,21 @@
     panel.innerHTML = `<strong>z=${z}</strong> — ${statusText}`;
   }
 
+  // agg_tiles.json hasn't been regenerated since 2026-09-01 (this instrument
+  // was built for 1-go's D74-D76 repair-coverage view, not 1.5-go's fresh
+  // national build). Flip to true once a 1.5-go-shaped export exists.
+  const ACTIVE = false;
+
   async function render(container) {
     container.innerHTML = '';
+
+    if (!ACTIVE) {
+      MJBMON.renderInactiveNotice(
+        container,
+        'agg_tiles.json は2026-09-01を最後に更新されておらず、1号のD74-D76修復対象マップ専用の計器です。1.5号のカバレッジ表示には未対応です。'
+      );
+      return undefined;
+    }
 
     const wrap = document.createElement('div');
     wrap.className = 'mjbmon-map-wrap';

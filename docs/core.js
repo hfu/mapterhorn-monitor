@@ -298,9 +298,28 @@ window.MJBMON = (function () {
     }
   });
 
+  // 2026-09-05: status-map/mission-timeline (and progress-trend, pending a
+  // 1.5-go-shaped history.json) were built for 1-go's D74-D76 repair arc
+  // specifically (agg_tiles.json/history.json haven't been fed since
+  // 2026-09-01, and mission-timeline's own PLANNED_STEPS/buildActivities
+  // read fields -- current_stage.baseline_done/total_to_repair -- that
+  // 1.5-go's progress.json doesn't populate). Rather than archive them
+  // (Hidenori: keep them registered, they're still the right shape for a
+  // future repair-style cycle) or silently leave them rendering stale/wrong
+  // data, each one's render() calls this first and returns -- an honest
+  // "not live" notice instead of a fabricated or broken view.
+  function renderInactiveNotice(container, reason) {
+    container.innerHTML = '';
+    const notice = document.createElement('div');
+    notice.className = 'mjbmon-inactive-notice';
+    notice.innerHTML = `<strong>この計器は今動いていません</strong>${reason}`;
+    container.appendChild(notice);
+  }
+
   return {
     registerFolder,
     registerInstrument,
+    renderInactiveNotice,
     start() {
       // openmct.on('start', ...) never actually fires in this rc1 build --
       // the listener registers (shows up in openmct's internal event

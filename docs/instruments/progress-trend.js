@@ -69,8 +69,24 @@
     </svg>`;
   }
 
+  // history.json hasn't been regenerated since 2026-09-01 and its points are
+  // keyed `repaired` (1-go's D74-D76 repair count) -- 1.5-go tracks a fresh
+  // `aggregation.done` count instead. This is the cheapest of the three
+  // stale instruments to revive (a history.json rebuilt from this repo's own
+  // progress.json commit history would work with no renderSvg changes), just
+  // not done yet. Flip to true once that export exists.
+  const ACTIVE = false;
+
   async function render(container) {
     container.innerHTML = '';
+
+    if (!ACTIVE) {
+      MJBMON.renderInactiveNotice(
+        container,
+        'history.json は2026-09-01を最後に更新されておらず、1号のD74-D76修復件数(repaired)専用の計器です。1.5号向けの再生成は未着手です(3つの停止中計器の中では最も復活コストが低い候補)。'
+      );
+      return undefined;
+    }
 
     let points;
     try {
