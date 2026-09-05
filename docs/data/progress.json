@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T22:38:00+09:00",
+  "generated_at": "2026-09-05T22:52:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
     "name": "1.5-go bundle.py (elevation) running -- both downsampling datatypes complete",
@@ -10,20 +10,20 @@
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 967,
+        "avail_gb": 962,
         "total_gb": 1800
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 703,
+        "avail_gb": 574,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.80,
-      1.95,
-      3.19
+      1.68,
+      1.66,
+      2.17
     ],
     "note": "Aggregation phase complete, downsampling (elevation) now running. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
   },
@@ -37,7 +37,7 @@
     "ready_not_run": 0,
     "not_ready": 0,
     "total": 8223,
-    "note": "D134/D135: both elevation and lineage datatype downsampling completed cleanly (8223/8223 each) with D133's enhanced monitoring finding no memory deterioration across either 5-worker run. meta-store/bundle/*.json (23 stale 1-go entries) cleared per D125's D4 item. bundle.py 1 (elevation) now running in screen bundle15go_elev; lineage bundle follows once elevation completes. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
+    "note": "D134/D135: both elevation and lineage datatype downsampling completed cleanly (8223/8223 each) with D133's enhanced monitoring finding no memory deterioration across either 5-worker run. meta-store/bundle/*.json (23 stale 1-go entries) cleared per D125's D4 item. bundle.py 1 (elevation) now running in screen bundle15go_elev, 4 workers, RSS climbing toward ~1.2-1.7GB (expected for in-memory regional bundle assembly), pmtiles-store consumption growing normally (~129GB so far). Lineage bundle follows once elevation completes. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
   },
   "global_overview": {
     "tiles": 13524,
