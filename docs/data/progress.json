@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T07:39:00+09:00",
+  "generated_at": "2026-09-06T07:53:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
     "name": "Publishing to stars (D122-style) -- live site down during transfer, ~7.5h ETA",
@@ -37,7 +37,7 @@
     "ready_not_run": 0,
     "not_ready": 0,
     "total": 8223,
-    "note": "D142: publishing to stars, elevation transfer 13% through at a steady ~11MB/s (~6h50m remaining). D143: extended pmtiles cluster to the lineage archive (~83.5% tile-content duplication found vs elevation's ~19%). D144: per Hidenori's request, moved the cluster call into merge_japan_bundles.py itself (hfu-mapterhorn commit 4b0603e) so it's guaranteed in code for every datatype from 2-go onward, not a runbook step to remember -- no effect on this already-running publish. Sent stars-cd a note about the recurring disk-headroom squeeze (Hidenori's idea: move rarely-used large pmtiles files to Source Cooperative)."
+    "note": "D142: publishing to stars, elevation transfer 16% through at a steady ~11MB/s (~6h20m remaining). D143/D144: lineage clustering measured and now guaranteed in merge_japan_bundles.py itself for 2-go onward (hfu-mapterhorn commit 4b0603e). Sent stars-cd a note about the recurring disk-headroom squeeze (Hidenori's idea: move rarely-used large pmtiles files to Source Cooperative)."
   },
   "global_overview": {
     "tiles": 13524,
