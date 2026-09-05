@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-05T19:38:00+09:00",
+  "generated_at": "2026-09-05T19:51:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
-    "name": "1.5-go downsampling (elevation), 3517/8223 done -- 5 workers, monitored closely (D133)",
+    "name": "1.5-go downsampling (elevation), 3792/8223 done -- 5 workers, monitored closely (D133)",
     "started_at": "2026-09-05T15:10:00+09:00",
     "description": "1-go's live archive remains stable, published, and untouched throughout. D128-D131: national aggregation launched 07:23 JST 9/4, survived a D129 kernel panic (5-worker memory exhaustion), recovered on 3 workers (fixed permanently for 1.5-go and 2-go by D131), and completed cleanly (D132) ~15:05 JST 9/5 -- roster/.done both 6,373, zero .todo, zero leftover scratch, no repeat crash. downsampling_covering.py ran clean; downsampling_run.py (elevation, screen ds15go_elev, DOWNSAMPLING_STRICT=1) launched and confirmed incrementing. Lineage-datatype downsampling follows once elevation completes. After both: bundle -> pmtiles cluster -> pmtiles merge (z0-7 splice) -> verify -> Hidenori's separate publish approval. Full narrative in DECISIONS.md D122-D132."
   },
@@ -15,15 +15,15 @@
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 722,
+        "avail_gb": 717,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      5.10,
-      5.17,
-      5.10
+      4.42,
+      5.02,
+      5.06
     ],
     "note": "Aggregation phase complete, downsampling (elevation) now running. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
   },
@@ -33,11 +33,11 @@
     "note": "1.5-go's own fresh count. Launched 07:23 JST 9/4, briefly interrupted by the D129 kernel panic at 19:54 and restarted ~20:03 with 3 workers (fixed at 3 for good by D131). Completed cleanly ~15:05 JST 9/5 (D132): roster/.done both 6,373, zero .todo, zero leftover tmp-store scratch, no repeat crash. 1-go's own aggregation (a separate, completed generation, 01M0MWK852631SHCHPA66F21WQ) remains 6373/6373 done and unaffected."
   },
   "downsampling": {
-    "done": 3517,
+    "done": 3792,
     "ready_not_run": 0,
-    "not_ready": 4706,
+    "not_ready": 4431,
     "total": 8223,
-    "note": "1.5-go's downsampling (elevation datatype) started ~15:10 JST via downsampling_run.py in screen ds15go_elev, DOWNSAMPLING_STRICT=1 PRIORITY_MODE=quadrans. D133: this script's own worker-count default is still 5 (D131 only patched aggregation_run.py); tracking RSS/swap/compressor each tick per Hidenori's call. Per-worker RSS fluctuates with tile density (0.25-1.8GB observed) but swap has stayed flat around 90-98MB across seven checks -- no cumulative climb, unlike D129's mechanism. Pace picked up substantially this interval (large jump from 1611), consistent with working through a denser zoom band. Lineage-datatype downsampling runs separately once elevation completes. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
+    "note": "1.5-go's downsampling (elevation datatype) started ~15:10 JST via downsampling_run.py in screen ds15go_elev, DOWNSAMPLING_STRICT=1 PRIORITY_MODE=quadrans. D133: this script's own worker-count default is still 5 (D131 only patched aggregation_run.py); tracking RSS/swap/compressor each tick per Hidenori's call. Per-worker RSS fluctuates with tile density (0.21-1.8GB observed) but swap has stayed flat around 90-98MB across eight checks -- no cumulative climb, unlike D129's mechanism. Past 46% done on the elevation datatype. Lineage-datatype downsampling runs separately once elevation completes. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
   },
   "global_overview": {
     "tiles": 13524,
