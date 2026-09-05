@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T23:07:00+09:00",
+  "generated_at": "2026-09-05T23:22:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
     "name": "1.5-go bundle.py (elevation) running -- both downsampling datatypes complete",
@@ -10,20 +10,20 @@
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 866,
+        "avail_gb": 775,
         "total_gb": 1800
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 547,
+        "avail_gb": 609,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      2.05,
-      1.88,
-      1.92
+      1.95,
+      1.80,
+      1.77
     ],
     "note": "Aggregation phase complete, downsampling (elevation) now running. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
   },
@@ -37,7 +37,7 @@
     "ready_not_run": 0,
     "not_ready": 0,
     "total": 8223,
-    "note": "D134/D135: both elevation and lineage datatype downsampling completed cleanly (8223/8223 each) with D133's enhanced monitoring finding no memory deterioration across either 5-worker run. meta-store/bundle/*.json (23 stale 1-go entries) cleared per D125's D4 item. bundle.py 1 (elevation) running in screen bundle15go_elev, 4 workers, RSS 1.1-2.0GB (expected). Disk consumption is notable this interval (~97GB on Migrate-2025-04, ~27GB on pmtiles-store) -- both bundle-store and pmtiles-store are being written to as regional bundles assemble; watching headroom closely but 1-go's own bundle.py finished in ~30min (D99) so this stage is expected to be short-lived. Lineage bundle follows once elevation completes. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
+    "note": "D134/D135: both elevation and lineage datatype downsampling completed cleanly (8223/8223 each) with D133's enhanced monitoring finding no memory deterioration across either 5-worker run. bundle.py 1 (elevation) running in screen bundle15go_elev, 4 workers, ~44min in (1-go's own bundle.py finished in ~30min per D99, so this is running a bit longer but not alarmingly so). Migrate-2025-04 usage has stabilized (775GB free); pmtiles-store actually recovered some space this interval (547->609GB), consistent with scratch cleanup after a regional bundle completes. Lineage bundle follows once elevation completes. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
   },
   "global_overview": {
     "tiles": 13524,
