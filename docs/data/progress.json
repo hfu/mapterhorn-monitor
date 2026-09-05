@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-05T13:53:00+09:00",
+  "generated_at": "2026-09-05T14:11:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
-    "name": "1.5-go national aggregation, 3 workers (fixed by D131) -- 6231/6373 done, nearly complete",
+    "name": "1.5-go national aggregation, 3 workers (fixed by D131) -- 6280/6373 done, nearly complete",
     "started_at": "2026-09-04T20:03:00+09:00",
     "description": "1-go's live archive remains stable, published, and untouched throughout. D129: a kernel panic at 19:54 JST (5-worker memory-compressor exhaustion) briefly interrupted the run; restarted at 20:03 with 3 workers, and D131 fixed 3 as the standard for both 1.5-go and 2-go (Hidenori: accept ~20-23% less throughput for zero crashes). Started_at/rate/ETA above are computed from the 20:03 restart, i.e. the current stable regime. After aggregation completes: downsampling (elevation + lineage) -> bundle -> pmtiles cluster -> pmtiles merge (z0-7 splice) -> verify -> Hidenori's separate publish approval. Full narrative in DECISIONS.md D122-D131."
   },
@@ -21,16 +21,16 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      3.79,
-      3.85,
-      3.90
+      3.95,
+      4.05,
+      3.99
     ],
     "note": "Steady, good pace this interval, nearing completion of the aggregation phase. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
   },
   "aggregation": {
-    "done": 6231,
+    "done": 6280,
     "total": 6373,
-    "note": "1.5-go's own fresh count, launched 07:23 JST, briefly interrupted by the D129 kernel panic at 19:54 and restarted ~20:03 with 3 workers (fixed at 3 for good by D131). 6231/6373 done (97.8%) as of ~13:53 JST (2026-09-05). Only 142 items left in this phase -- watching closely for completion, then the runbook moves to downsampling. HANDOVER.md/PLAN.md refreshed for D129-D131 ahead of a context compaction (commit bc87aae). 1-go's own aggregation (a separate, completed generation, 01M0MWK852631SHCHPA66F21WQ) remains 6373/6373 done and unaffected."
+    "note": "1.5-go's own fresh count, launched 07:23 JST, briefly interrupted by the D129 kernel panic at 19:54 and restarted ~20:03 with 3 workers (fixed at 3 for good by D131). 6280/6373 done (98.5%) as of ~14:11 JST (2026-09-05). Only 93 items left in this phase -- watching closely for completion, then the runbook moves to downsampling. DECISIONS.md split into DECISIONS0.md/DECISIONS1.md (D0-D99/D100-D199) with a regenerated, Date-column-free index (commit 80653c3). 1-go's own aggregation (a separate, completed generation, 01M0MWK852631SHCHPA66F21WQ) remains 6373/6373 done and unaffected."
   },
   "downsampling": {
     "done": 0,
