@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T02:22:00+09:00",
+  "generated_at": "2026-09-06T02:38:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
     "name": "1.5-go pmtiles merge (z0-7 overview splice) running -- cluster+verify complete",
@@ -10,7 +10,7 @@
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 591,
+        "avail_gb": 502,
         "total_gb": 1800
       },
       {
@@ -21,9 +21,9 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.37,
-      1.55,
-      1.55
+      0.95,
+      1.23,
+      1.38
     ],
     "note": "Aggregation phase complete, downsampling (elevation) now running. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
   },
@@ -37,7 +37,7 @@
     "ready_not_run": 0,
     "not_ready": 0,
     "total": 8223,
-    "note": "D140: pmtiles cluster (elevation) completed cleanly and verify passed. ./pmtiles merge (z0-7 overview splice, screen mergesplice15go) is 29% through 293GB, ~34min remaining -- will produce the final bundle-store/mapterhorn-japan-bridge.pmtiles. Lineage stays a separate final file needing only its own verify. Then Hidenori's publish approval. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
+    "note": "D140: pmtiles cluster (elevation) completed cleanly and verify passed. ./pmtiles merge (z0-7 overview splice, screen mergesplice15go) is 60% through 293GB, ~20min remaining -- will produce the final bundle-store/mapterhorn-japan-bridge.pmtiles. Lineage stays a separate final file needing only its own verify. Then Hidenori's publish approval. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
   },
   "global_overview": {
     "tiles": 13524,
