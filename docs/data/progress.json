@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T06:40:00+09:00",
+  "generated_at": "2026-09-06T06:53:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
     "name": "Publishing to stars (D122-style) -- live site down during transfer, ~7.5h ETA",
@@ -37,7 +37,7 @@
     "ready_not_run": 0,
     "not_ready": 0,
     "total": 8223,
-    "note": "D142: Hidenori approved publish. stars had only 150GB free (not enough for old+new simultaneously), so per D122's precedent the old 1-go live file was deleted first (confirmed with Hidenori specifically, given the ~8h downtime this implies) and the new elevation+lineage archives are being rsync'd in (screen publish15go on slate, ~11MB/s, ~7.5h ETA -- matches D122's historical 100Mbps bottleneck on stars' NIC). The live site is down until the transfer, verify, and atomic rename complete. Once done: pmtiles verify on stars, atomic rename into place, martin restart -- all scripted to proceed unattended."
+    "note": "D142: Hidenori approved publish; old 1-go live file deleted first (~8h downtime confirmed with Hidenori), elevation archive transfer to stars is 3% through at a steady ~11MB/s (~7h19m remaining). Sent stars-cd a note about the recurring disk-headroom squeeze (Hidenori's suggestion: move rarely-used large pmtiles files to Source Cooperative) so this doesn't repeat for 2-go. Once transfer completes: lineage transfer, pmtiles verify (both, on stars), atomic rename (both), martin restart -- all scripted to proceed unattended in screen publish15go."
   },
   "global_overview": {
     "tiles": 13524,
