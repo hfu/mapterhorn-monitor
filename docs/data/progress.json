@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T00:22:00+09:00",
+  "generated_at": "2026-09-06T00:37:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
     "name": "1.5-go merge_japan_bundles.py (elevation) running -- both bundle datatypes complete",
@@ -10,20 +10,20 @@
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 809,
+        "avail_gb": 961,
         "total_gb": 1800
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 518,
+        "avail_gb": 418,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.45,
-      1.50,
-      1.49
+      1.76,
+      1.58,
+      1.51
     ],
     "note": "Aggregation phase complete, downsampling (elevation) now running. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
   },
@@ -37,7 +37,7 @@
     "ready_not_run": 0,
     "not_ready": 0,
     "total": 8223,
-    "note": "D137: both bundle.py runs (elevation and lineage) completed cleanly. merge_japan_bundles.py (elevation) actively running in screen merge15go_elev (2:20 CPU time accumulated, RSS growing normally). pmtiles-store consumed ~174GB this interval writing the merged archive (Migrate-2025-04 actually recovered ~130GB from input cleanup) -- watching this step closely given D49's historical ENOSPC incident here, but headroom remains comfortable (518GB). Lineage merge follows once elevation completes. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
+    "note": "D137: both bundle.py runs (elevation and lineage) completed cleanly. merge_japan_bundles.py (elevation) actively running in screen merge15go_elev (3:41 CPU time accumulated, RSS growing normally to 593MB). pmtiles-store down to 418GB free (another ~100GB consumed this interval) while Migrate-2025-04 recovered to 961GB. D49's historical ENOSPC incident here hit 13Gi free before recovery -- current headroom (418GB) is comfortable but the consumption trend is being watched closely each tick. Lineage merge follows once elevation completes. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
   },
   "global_overview": {
     "tiles": 13524,
