@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T01:37:00+09:00",
+  "generated_at": "2026-09-06T01:53:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
     "name": "1.5-go pmtiles cluster (elevation) running -- both merges complete",
@@ -10,20 +10,20 @@
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 677,
+        "avail_gb": 907,
         "total_gb": 1800
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 496,
+        "avail_gb": 413,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.76,
-      1.93,
-      1.82
+      1.73,
+      1.84,
+      1.86
     ],
     "note": "Aggregation phase complete, downsampling (elevation) now running. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
   },
@@ -37,7 +37,7 @@
     "ready_not_run": 0,
     "not_ready": 0,
     "total": 8223,
-    "note": "D139: both merge_japan_bundles.py runs complete (elevation: mapterhorn-japan-bridge.z8plus.pmtiles, 2,568,061 tiles; lineage: already-final mapterhorn-japan-bridge-lineage.pmtiles, same tile count). ./pmtiles cluster (elevation only) is 65% through 2.1M items, ~12min remaining, correct TMPDIR confirmed. Next: verify -> pmtiles merge (z0-7 splice with global-overview-backup.pmtiles) -> verify (elevation), plus a direct verify on the lineage file. Then Hidenori's publish approval. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
+    "note": "./pmtiles cluster (elevation) reached 100% tile processing and printed its directory stats (2,568,061 addressed tiles, 2,101,520 tile entries after RLE), and is now in its final write phase -- output file actively growing (85.9GB -> 91.6GB observed), process still consuming CPU normally. Next once it exits: verify -> pmtiles merge (z0-7 splice with global-overview-backup.pmtiles) -> verify (elevation), plus a direct verify on the already-final lineage file. Then Hidenori's publish approval. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
   },
   "global_overview": {
     "tiles": 13524,
