@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T00:08:00+09:00",
+  "generated_at": "2026-09-06T00:22:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
     "name": "1.5-go merge_japan_bundles.py (elevation) running -- both bundle datatypes complete",
@@ -10,19 +10,19 @@
     "disk": [
       {
         "volume": "/Volumes/Migrate-2025-04",
-        "avail_gb": 679,
+        "avail_gb": 809,
         "total_gb": 1800
       },
       {
         "volume": "/Volumes/pmtiles-store",
-        "avail_gb": 691,
+        "avail_gb": 518,
         "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.53,
-      1.44,
+      1.45,
+      1.50,
       1.49
     ],
     "note": "Aggregation phase complete, downsampling (elevation) now running. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
@@ -37,7 +37,7 @@
     "ready_not_run": 0,
     "not_ready": 0,
     "total": 8223,
-    "note": "Both bundle.py runs (elevation and lineage) completed cleanly -- 23 files each (planet[.-lineage].pmtiles + 22 regional z6 bundles), no errors. merge_japan_bundles.py (elevation) now running in screen merge15go_elev, currently in its completeness-check phase (D119's protection against the 9/2 ENOSPC-style partial-merge incident) -- this step (D49) has historically been the riskiest for disk exhaustion, watching headroom closely. Lineage merge follows once elevation completes. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
+    "note": "D137: both bundle.py runs (elevation and lineage) completed cleanly. merge_japan_bundles.py (elevation) actively running in screen merge15go_elev (2:20 CPU time accumulated, RSS growing normally). pmtiles-store consumed ~174GB this interval writing the merged archive (Migrate-2025-04 actually recovered ~130GB from input cleanup) -- watching this step closely given D49's historical ENOSPC incident here, but headroom remains comfortable (518GB). Lineage merge follows once elevation completes. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
   },
   "global_overview": {
     "tiles": 13524,
