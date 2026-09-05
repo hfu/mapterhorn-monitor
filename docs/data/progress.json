@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-05T21:06:00+09:00",
+  "generated_at": "2026-09-05T21:21:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
-    "name": "1.5-go downsampling (lineage), 995/8223 done -- elevation datatype complete",
+    "name": "1.5-go downsampling (lineage), 1120/8223 done -- elevation datatype complete",
     "started_at": "2026-09-05T15:10:00+09:00",
     "description": "1-go's live archive remains stable, published, and untouched throughout. D128-D131: national aggregation launched 07:23 JST 9/4, survived a D129 kernel panic (5-worker memory exhaustion), recovered on 3 workers (fixed permanently for 1.5-go and 2-go by D131), and completed cleanly (D132) ~15:05 JST 9/5 -- roster/.done both 6,373, zero .todo, zero leftover scratch, no repeat crash. downsampling_covering.py ran clean; downsampling_run.py (elevation, screen ds15go_elev, DOWNSAMPLING_STRICT=1) launched and confirmed incrementing. Lineage-datatype downsampling follows once elevation completes. After both: bundle -> pmtiles cluster -> pmtiles merge (z0-7 splice) -> verify -> Hidenori's separate publish approval. Full narrative in DECISIONS.md D122-D132."
   },
@@ -21,9 +21,9 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      6.15,
-      5.97,
-      5.66
+      5.87,
+      5.82,
+      5.75
     ],
     "note": "Aggregation phase complete, downsampling (elevation) now running. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
   },
@@ -33,11 +33,11 @@
     "note": "1.5-go's own fresh count. Launched 07:23 JST 9/4, briefly interrupted by the D129 kernel panic at 19:54 and restarted ~20:03 with 3 workers (fixed at 3 for good by D131). Completed cleanly ~15:05 JST 9/5 (D132): roster/.done both 6,373, zero .todo, zero leftover tmp-store scratch, no repeat crash. 1-go's own aggregation (a separate, completed generation, 01M0MWK852631SHCHPA66F21WQ) remains 6373/6373 done and unaffected."
   },
   "downsampling": {
-    "done": 995,
+    "done": 1120,
     "ready_not_run": 0,
-    "not_ready": 7228,
+    "not_ready": 7103,
     "total": 8223,
-    "note": "D134: elevation datatype downsampling completed cleanly (8223/8223, ~5.5h, screen ds15go_elev) -- D133's enhanced monitoring found no cumulative RSS/swap climb across the whole 5-worker run. Lineage datatype now running (screen ds15go_lineage, DOWNSAMPLING_DATATYPE=lineage DOWNSAMPLING_STRICT=1); pace has picked up (~46/min this interval). Per-worker RSS stays notably lighter than elevation (~0.12-0.13GB, single-band categorical data vs terrarium RGB), swap flat at 82MB. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
+    "note": "D134: elevation datatype downsampling completed cleanly (8223/8223, ~5.5h, screen ds15go_elev) -- D133's enhanced monitoring found no cumulative RSS/swap climb across the whole 5-worker run. Lineage datatype now running (screen ds15go_lineage, DOWNSAMPLING_DATATYPE=lineage DOWNSAMPLING_STRICT=1). Per-worker RSS stays notably lighter than elevation (~0.13-0.14GB, single-band categorical data vs terrarium RGB), swap trending down (74MB). 1-go's own downsampling (separate generation) remains 8223/8223 complete."
   },
   "global_overview": {
     "tiles": 13524,
