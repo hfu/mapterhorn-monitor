@@ -22,14 +22,20 @@
     <script src="https://unpkg.com/openmct@4.3.0-rc1/dist/openmct.js"></script>
     <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
     <div id="app"></div>
-    <script src="./core.js"></script>
-    <script src="./config.js"></script>
-    <script src="./instruments/current-stage.js"></script>
-    <script src="./instruments/status-map.js"></script>
-    <script src="./instruments/resources.js"></script>
-    <script src="./instruments/mission-timeline.js"></script>
-    <script src="./instruments/live-viewer.js"></script>
-    <script src="./instruments/progress-trend.js"></script>
-    <script src="./boot.js"></script>
+    <!-- ?v= cache-busts these on every dashboard code change (2026-09-05):
+         a long-lived browser tab checking this dashboard over a multi-day
+         mission otherwise keeps running whatever instrument JS it first
+         loaded, silently missing later fixes until something else forces a
+         hard reload. Bump the date whenever any file below this line
+         changes. -->
+    <script src="./core.js?v=20260905b"></script>
+    <script src="./config.js?v=20260905b"></script>
+    <script src="./instruments/current-stage.js?v=20260905b"></script>
+    <script src="./instruments/status-map.js?v=20260905b"></script>
+    <script src="./instruments/resources.js?v=20260905b"></script>
+    <script src="./instruments/mission-timeline.js?v=20260905b"></script>
+    <script src="./instruments/live-viewer.js?v=20260905b"></script>
+    <script src="./instruments/progress-trend.js?v=20260905b"></script>
+    <script src="./boot.js?v=20260905b"></script>
   </body>
 </html>

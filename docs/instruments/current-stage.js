@@ -1,27 +1,29 @@
 (function () {
   const config = window.MJBMON_CONFIG || {};
 
-  // Linear-rate ETA from the two timestamps embedded in progress.json --
-  // (done - baseline_done) tiles repaired since started_at, projected
-  // forward against the remaining total_to_repair. This is a rough
-  // instantaneous estimate (D74-D76's repair pace is known to be very
-  // uneven -- some positions take under a minute, a Kyushu-tier item was
-  // observed taking ~29 minutes), matching the same caveat MONITORING_
-  // REQUIREMENTS.md gives for the manual tick reports this instrument
-  // mirrors.
-  function computeEta(stage, generatedAt) {
-    if (!stage.started_at) {
+  // Rewritten 2026-09-05 (Hidenori feedback: "the stat grid is the part I
+  // actually want, and it's empty"). The original computeEta()/render() read
+  // current_stage.done/baseline_done/total_to_repair/started_at -- fields
+  // that only ever existed for 1-go's D74-D76 repair cycle. 1.5-go's
+  // progress.json instead carries a top-level `aggregation: {done, total}`
+  // and never populated those stage-level fields, so every box silently
+  // rendered a zero or "n/a" instead of erroring loudly. Now reads
+  // `aggregation` directly, and `current_stage.started_at` (added to
+  // progress.json alongside this fix) for the rate/ETA math -- with no
+  // baseline to subtract, since 1.5-go counts from a fresh 0, not a repair
+  // baseline.
+  function computeEta(startedAtIso, done, total, generatedAt) {
+    if (!startedAtIso) {
       return null;
     }
-    const startedMs = new Date(stage.started_at).getTime();
+    const startedMs = new Date(startedAtIso).getTime();
     const nowMs = new Date(generatedAt).getTime();
     const elapsedMs = nowMs - startedMs;
-    const repaired = (stage.done || 0) - (stage.baseline_done || 0);
-    if (elapsedMs <= 0 || repaired <= 0) {
+    if (elapsedMs <= 0 || done <= 0) {
       return null;
     }
-    const rate = repaired / elapsedMs; // items per ms
-    const remaining = (stage.total_to_repair || 0) - repaired;
+    const rate = done / elapsedMs; // items per ms
+    const remaining = (total || 0) - done;
     if (remaining <= 0) {
       return { remainingMs: 0, ratePerMinute: rate * 60000 };
     }
@@ -41,30 +43,26 @@
     }
 
     const stage = progress.current_stage || {};
+    const agg = progress.aggregation || {};
+
     const nameEl = document.createElement('div');
     nameEl.className = 'mjbmon-stage-name';
     nameEl.textContent = stage.name || '(unknown stage)';
     root.appendChild(nameEl);
 
-    if (stage.description) {
-      const descEl = document.createElement('div');
-      descEl.className = 'mjbmon-stage-desc';
-      descEl.textContent = stage.description;
-      root.appendChild(descEl);
-    }
+    const done = agg.done || 0;
+    const total = agg.total;
 
-    const done = stage.done || 0;
-    const baseline = stage.baseline_done || 0;
-    const total = stage.total_to_repair;
-    const repaired = done - baseline;
-
+    // Numbers + progress bar lead the view -- this is the "at a glance"
+    // answer to "how far along are we", so it comes before the long-form
+    // narrative rather than after it.
     if (typeof total === 'number') {
-      const pct = total > 0 ? (100 * repaired) / total : 0;
+      const pct = total > 0 ? (100 * done) / total : 0;
 
       const numbers = document.createElement('div');
       numbers.className = 'mjbmon-stage-numbers';
       numbers.innerHTML = `
-        <span class="mjbmon-stage-done">${repaired.toLocaleString('en-US')}</span>
+        <span class="mjbmon-stage-done">${done.toLocaleString('en-US')}</span>
         <span class="mjbmon-stage-total">/ ${total.toLocaleString('en-US')}</span>
         <span class="mjbmon-stage-pct">(${pct.toFixed(1)}%)</span>
       `;
@@ -79,7 +77,7 @@
       root.appendChild(track);
     }
 
-    const eta = computeEta(stage, progress.generated_at);
+    const eta = computeEta(stage.started_at, done, total, progress.generated_at);
     const grid = document.createElement('div');
     grid.className = 'mjbmon-stage-eta-grid';
 
@@ -110,6 +108,17 @@
       grid.appendChild(box);
     });
     root.appendChild(grid);
+
+    // The long-form narrative comes last -- still available for anyone who
+    // wants the full story (this is also literally session-resume context,
+    // shared verbatim with DECISIONS.md), but it no longer sits between the
+    // reader and the numbers.
+    if (stage.description) {
+      const descEl = document.createElement('div');
+      descEl.className = 'mjbmon-stage-desc';
+      descEl.textContent = stage.description;
+      root.appendChild(descEl);
+    }
 
     const caption = document.createElement('p');
     caption.className = 'mjbmon-caption';
