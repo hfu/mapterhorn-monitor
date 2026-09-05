@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-05T13:22:00+09:00",
+  "generated_at": "2026-09-05T13:38:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
-    "name": "1.5-go national aggregation, 3 workers (fixed by D131) -- 6139/6373 done, nearly complete",
+    "name": "1.5-go national aggregation, 3 workers (fixed by D131) -- 6164/6373 done, nearly complete",
     "started_at": "2026-09-04T20:03:00+09:00",
     "description": "1-go's live archive remains stable, published, and untouched throughout. D129: a kernel panic at 19:54 JST (5-worker memory-compressor exhaustion) briefly interrupted the run; restarted at 20:03 with 3 workers, and D131 fixed 3 as the standard for both 1.5-go and 2-go (Hidenori: accept ~20-23% less throughput for zero crashes). Started_at/rate/ETA above are computed from the 20:03 restart, i.e. the current stable regime. After aggregation completes: downsampling (elevation + lineage) -> bundle -> pmtiles cluster -> pmtiles merge (z0-7 splice) -> verify -> Hidenori's separate publish approval. Full narrative in DECISIONS.md D122-D131."
   },
@@ -30,7 +30,7 @@
   "aggregation": {
     "done": 6139,
     "total": 6373,
-    "note": "1.5-go's own fresh count, launched 07:23 JST, briefly interrupted by the D129 kernel panic at 19:54 and restarted ~20:03 with 3 workers (fixed at 3 for good by D131). 6139/6373 done (96.3%) as of ~13:22 JST (2026-09-05). Only 234 items left in this phase -- watching closely for completion, then the runbook moves to downsampling. 1-go's own aggregation (a separate, completed generation, 01M0MWK852631SHCHPA66F21WQ) remains 6373/6373 done and unaffected."
+    "note": "1.5-go's own fresh count, launched 07:23 JST, briefly interrupted by the D129 kernel panic at 19:54 and restarted ~20:03 with 3 workers (fixed at 3 for good by D131). 6164/6373 done (96.7%) as of ~13:38 JST (2026-09-05). Only 209 items left in this phase -- watching closely for completion, then the runbook moves to downsampling. HANDOVER.md/PLAN.md refreshed for D129-D131 ahead of a context compaction (commit bc87aae). 1-go's own aggregation (a separate, completed generation, 01M0MWK852631SHCHPA66F21WQ) remains 6373/6373 done and unaffected."
   },
   "downsampling": {
     "done": 0,
