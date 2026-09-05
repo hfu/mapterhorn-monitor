@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T03:08:00+09:00",
+  "generated_at": "2026-09-06T03:23:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
     "name": "1.5-go pipeline complete -- both archives verified, awaiting publish approval",
@@ -37,7 +37,7 @@
     "ready_not_run": 0,
     "not_ready": 0,
     "total": 8223,
-    "note": "D141: 1.5-go's full pipeline is complete. mapterhorn-japan-bridge.pmtiles (elevation, 314.66GB, zoom 0-16, global bounds, center correctly set, clustered) and mapterhorn-japan-bridge-lineage.pmtiles (lineage, 204.6MB, zoom 8-16, Japan bounds) both passed final pmtiles verify with no errors. Every stage from aggregation through the z0-7 overview splice is done for generation 01M1MKD73P0KDT719H21NJV9VR. The only remaining step is Hidenori's explicit publish approval before a manual rsync to stars -- nothing is being published yet. 1-go's own live archive remains stable, published, and untouched throughout."
+    "note": "D141: 1.5-go's full pipeline is complete and idle -- confirmed no aggregation/downsampling/bundle/merge/pmtiles processes running. Cleaned up 8 leftover idle screen sessions from completed stages (kept disk_headroom running). mapterhorn-japan-bridge.pmtiles (elevation, 314.66GB) and mapterhorn-japan-bridge-lineage.pmtiles (lineage, 204.6MB) both verified clean. Quietly waiting on Hidenori's explicit publish approval before any rsync to stars -- nothing published yet. 1-go's own live archive remains stable, published, and untouched throughout."
   },
   "global_overview": {
     "tiles": 13524,
