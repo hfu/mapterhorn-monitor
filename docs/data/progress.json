@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-06T14:40:00+09:00",
+  "generated_at": "2026-09-06T14:55:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
-    "name": "Publishing to stars -- elevation byte-transfer complete, rsync finalizing (checksum pass on a 314GB file)",
+    "name": "1.5-go LIVE on stars -- mission complete (D145)",
     "started_at": "2026-09-06T06:39:00+09:00",
-    "description": "D142: Hidenori approved publish; old 1-go live file deleted, elevation archive (314.66GB) rsync'd to stars over ~7.5h at ~11MB/s. As of 14:40 JST the byte transfer itself is done (destination temp file's size exactly matches the source), but the local rsync client is still using ~25% CPU in what looks like a post-transfer verification/checksum pass -- not a hang, just slow on a file this size; being watched closely. D143/D144: lineage archive was also clustered (found ~83.5% tile-content duplication, far higher than elevation's ~19%) and that clustering is now guaranteed in code (merge_japan_bundles.py, hfu-mapterhorn commit 4b0603e) for 2-go onward. Once this rsync returns: lineage transfer (~30s, tiny by comparison), pmtiles verify on stars (both files), atomic rename (both), martin restart -- all scripted to proceed unattended in screen publish15go. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
+    "description": "D145: publish completed 14:43:15 JST (elevation 314.66GB over ~7h48m + ~30min rsync finalization on the large file, lineage 204.6MB in seconds). Both archives verified clean on stars (elevation 2.16s, lineage 288ms), martin restarted. Live-site spot checks confirm no regression: elevation byte counts at known coordinates (z13/6894/3521, z8/219/101) match D118/D122's verified values exactly; lineage (first-time publish) serves correctly (TileJSON + sample tile both HTTP 200, zoom 8-16, Japan-only bounds as expected). D143/D144: lineage clustering (found ~83.5% tile-content duplication vs elevation's ~19%) is now guaranteed in code for 2-go onward (merge_japan_bundles.py, hfu-mapterhorn commit 4b0603e). 1-go's own live archive was replaced by this publish (as planned, D96) but its data was never touched during the whole 1.5-go build -- generation_id isolation (D124) held throughout. 1.5-go's two founding goals (D96) -- national-scale validation of D95's namespace separation, and shipping the lineage feature -- are both done."
   },
   "resources": {
     "disk": [
@@ -17,15 +17,20 @@
         "volume": "/Volumes/pmtiles-store",
         "avail_gb": 413,
         "total_gb": 1800
+      },
+      {
+        "volume": "stars:/home/stars/data",
+        "avail_gb": 150,
+        "total_gb": 1800
       }
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.35,
-      1.39,
-      1.41
+      1.23,
+      1.42,
+      1.42
     ],
-    "note": "Publish transfer in progress (elevation byte-transfer done, rsync finalizing). check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously -- note this note itself had gone stale (last real update was 08:08, several ticks were reported verbally in chat but not persisted here until now)."
+    "note": "1.5-go publish complete, martin restarted and serving both archives live. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously. Pipeline idle now -- 2-go is planned for a fresh session, not this one."
   },
   "aggregation": {
     "done": 6373,
@@ -37,13 +42,13 @@
     "ready_not_run": 0,
     "not_ready": 0,
     "total": 8223,
-    "note": "D142: publishing to stars, elevation transfer 20% through at a steady ~11MB/s (~6h remaining). D143/D144: lineage clustering measured and now guaranteed in merge_japan_bundles.py itself for 2-go onward (hfu-mapterhorn commit 4b0603e). Sent stars-cd a note about the recurring disk-headroom squeeze (Hidenori's idea: move rarely-used large pmtiles files to Source Cooperative)."
+    "note": "Both datatypes' downsampling completed long ago (D134/D135); this section is now historical. See current_stage for the publish outcome (D145)."
   },
   "global_overview": {
     "tiles": 13524,
     "max_missing_at_z7": 8321,
     "verified": true,
-    "note": "This reflects 1-go's published archive, still live on stars. 1.5-go has not reached this stage yet."
+    "note": "1-go's own overview stats (last measured on the archive 1.5-go has now replaced on stars). 1.5-go's live archive carries the same spliced z0-7 Mapterhorn overview (via the D141 pmtiles merge step) but hasn't had this specific gap-count re-measured post-publish."
   },
   "pipeline_zoom_split": {
     "own_min_zoom": 8,
