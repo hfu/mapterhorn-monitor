@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-06T08:08:00+09:00",
+  "generated_at": "2026-09-06T14:40:00+09:00",
   "generation_id": "01M1MKD73P0KDT719H21NJV9VR",
   "current_stage": {
-    "name": "Publishing to stars (D122-style) -- live site down during transfer, ~7.5h ETA",
-    "started_at": "2026-09-05T15:10:00+09:00",
-    "description": "1-go's live archive remains stable, published, and untouched throughout. D128-D131: national aggregation launched 07:23 JST 9/4, survived a D129 kernel panic (5-worker memory exhaustion), recovered on 3 workers (fixed permanently for 1.5-go and 2-go by D131), and completed cleanly (D132) ~15:05 JST 9/5 -- roster/.done both 6,373, zero .todo, zero leftover scratch, no repeat crash. downsampling_covering.py ran clean; downsampling_run.py (elevation, screen ds15go_elev, DOWNSAMPLING_STRICT=1) launched and confirmed incrementing. Lineage-datatype downsampling follows once elevation completes. After both: bundle -> pmtiles cluster -> pmtiles merge (z0-7 splice) -> verify -> Hidenori's separate publish approval. Full narrative in DECISIONS.md D122-D132."
+    "name": "Publishing to stars -- elevation byte-transfer complete, rsync finalizing (checksum pass on a 314GB file)",
+    "started_at": "2026-09-06T06:39:00+09:00",
+    "description": "D142: Hidenori approved publish; old 1-go live file deleted, elevation archive (314.66GB) rsync'd to stars over ~7.5h at ~11MB/s. As of 14:40 JST the byte transfer itself is done (destination temp file's size exactly matches the source), but the local rsync client is still using ~25% CPU in what looks like a post-transfer verification/checksum pass -- not a hang, just slow on a file this size; being watched closely. D143/D144: lineage archive was also clustered (found ~83.5% tile-content duplication, far higher than elevation's ~19%) and that clustering is now guaranteed in code (merge_japan_bundles.py, hfu-mapterhorn commit 4b0603e) for 2-go onward. Once this rsync returns: lineage transfer (~30s, tiny by comparison), pmtiles verify on stars (both files), atomic rename (both), martin restart -- all scripted to proceed unattended in screen publish15go. 1-go's own downsampling (separate generation) remains 8223/8223 complete."
   },
   "resources": {
     "disk": [
@@ -21,11 +21,11 @@
     ],
     "memory_pressure_level": 1,
     "load_average": [
-      1.22,
-      1.31,
-      1.35
+      1.35,
+      1.39,
+      1.41
     ],
-    "note": "Aggregation phase complete, downsampling (elevation) now running. check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously."
+    "note": "Publish transfer in progress (elevation byte-transfer done, rsync finalizing). check_disk_headroom.py watches both volumes every 15min autonomously; this dashboard is updated by the agent each monitoring tick, not autonomously -- note this note itself had gone stale (last real update was 08:08, several ticks were reported verbally in chat but not persisted here until now)."
   },
   "aggregation": {
     "done": 6373,
