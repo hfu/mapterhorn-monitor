@@ -8,22 +8,25 @@
   // exist.
   const LINEAGE_TILEJSON_URL = 'https://stars.optgeo.org/mapterhorn-japan-bridge-lineage';
 
-  // Palette mirrors hfu-mapterhorn/pipelines/lineage_inspect.py's own
-  // PALETTE exactly (keep the two in sync by eye -- there's no shared
-  // source of truth between the Python diagnostic tool and this JS
-  // instrument). Global tier -> (source, resolution): 0=jpnational1
-  // (DEM1A, 1m), 1-3=jpnational5 A/B/C (DEM5, 5m), 4-5=jpnational10 A/B
-  // (DEM10, 10m), 6=jpnationalsea (GLO-30 fallback). Distinct hues per
-  // resolution family (blue=1m, greens=5m, oranges=10m, grey=sea) so a
-  // glance shows both "which family" and "which product" won at a pixel.
+  // Global tier -> (source, resolution): 0=jpnational1 (DEM1A, 1m),
+  // 1-3=jpnational5 A/B/C (DEM5, 5m), 4-5=jpnational10 A/B (DEM10, 10m),
+  // 6=jpnationalsea (GLO-30 fallback). Same hue-family mapping as
+  // hfu-mapterhorn/pipelines/lineage_inspect.py's own diagnostic PALETTE
+  // (blue=1m, greens=5m, ambers=10m, grey=sea) so the two read as "the
+  // same classification," but deliberately NOT the same RGB values --
+  // this instrument is presentation-facing (a public dashboard, meant
+  // to read well over real hillshade at low opacity), while the Python
+  // tool's palette is a loud, maximum-contrast diagnostic rendering
+  // meant to stand alone. A softened, muted version of the same hues
+  // keeps the terrain legible underneath instead of fighting it.
   const TIERS = [
-    { value: 0, color: [30, 60, 200], label: '1m (DEM1A, jpnational1)' },
-    { value: 1, color: [0, 130, 0], label: '5m A (DEM5A)' },
-    { value: 2, color: [110, 200, 90], label: '5m B (DEM5B)' },
-    { value: 3, color: [190, 235, 170], label: '5m C (DEM5C)' },
-    { value: 4, color: [200, 120, 0], label: '10m A (DEM10A)' },
-    { value: 5, color: [240, 190, 120], label: '10m B (DEM10B)' },
-    { value: 6, color: [150, 150, 150], label: 'Sea (GLO-30 fallback)' }
+    { value: 0, color: [96, 133, 205], label: '1m (DEM1A, jpnational1)' },
+    { value: 1, color: [111, 163, 104], label: '5m A (DEM5A)' },
+    { value: 2, color: [150, 189, 128], label: '5m B (DEM5B)' },
+    { value: 3, color: [199, 219, 176], label: '5m C (DEM5C)' },
+    { value: 4, color: [199, 149, 92], label: '10m A (DEM10A)' },
+    { value: 5, color: [223, 190, 148], label: '10m B (DEM10B)' },
+    { value: 6, color: [163, 163, 158], label: 'Sea (GLO-30 fallback)' }
   ];
 
   // The lineage PNG's R channel carries the raw category byte (0-6, or
@@ -122,7 +125,7 @@
       minzoom: 8,
       paint: {
         'color-relief-color': buildColorReliefExpression(),
-        'color-relief-opacity': 0.7
+        'color-relief-opacity': 0.5
       }
     };
     // Stack the lineage color layer above EVERY bvmap fill/line layer
